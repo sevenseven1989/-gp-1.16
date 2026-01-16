@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acciones Españolas - Inversión en el Mercado Bursátil Español</title>
+    <style>
+        /* 全局样式重置与基础设置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+        }
+
+        /* 导航栏样式 */
+        header {
+            background-color: #1a2537;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #f39c12;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #f39c12;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* 英雄区样式 */
+        .hero {
+            background: linear-gradient(rgba(26, 37, 55, 0.8), rgba(26, 37, 55, 0.9)), url('https://images.unsplash.com/photo-1553909097-4a41b0962b0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .hero-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: #f39c12;
+            color: #ffffff;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background-color: #e67e22;
+            transform: translateY(-3px);
+        }
+
+        /* 通用内容容器样式 */
+        .section {
+            padding: 5rem 0;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1a2537;
+        }
+
+        /* 市场概览模块 */
+        .market-overview {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .overview-card {
+            padding: 1.5rem;
+            border-left: 4px solid #f39c12;
+            background-color: #fdfbf8;
+            border-radius: 5px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .overview-card:hover {
+            box-shadow: 0 2px 8px rgba(243, 156, 18, 0.2);
+        }
+
+        .overview-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #e67e22;
+        }
+
+        .overview-card p {
+            font-size: 0.95rem;
+            color: #34495e;
+        }
+
+        /* 热门股票模块 */
+        .stocks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .stock-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stock-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .stock-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .stock-content {
+            padding: 1.5rem;
+        }
+
+        .stock-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #1a2537;
+        }
+
+        .stock-ticker {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            background-color: #f1f2f6;
+            border-radius: 3px;
+        }
+
+        .stock-price {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .price-up {
+            color: #27ae60;
+        }
+
+        .price-down {
+            color: #e74c3c;
+        }
+
+        .stock-content p {
+            font-size: 0.95rem;
+            color: #34495e;
+            margin-bottom: 1.5rem;
+        }
+
+        .stock-link {
+            display: inline-block;
+            color: #f39c12;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .stock-link:hover {
+            color: #e67e22;
+            text-decoration: underline;
+        }
+
+        /* 投资优势模块 */
+        .advantages {
+            background-color: #1a2537;
+            color: #ffffff;
+            margin: 0;
+            width: 100%;
+            padding: 5rem 0;
+        }
+
+        .advantages .section-title {
+            color: #ffffff;
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .advantage-card {
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .advantage-card:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .advantage-card i {
+            font-size: 2.5rem;
+            color: #f39c12;
+            margin-bottom: 1.5rem;
+        }
+
+        .advantage-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .advantage-card p {
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        /* 页脚样式 */
+        footer {
+            background-color: #1a2537;
+            color: #ecf0f1;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #f39c12;
+        }
+
+        .copyright {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-top: 2rem;
+        }
+
+        /* 响应式适配 - 移动端 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+    <!-- 引入图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">Bolsa<span>España</span></a>
+            <div class="nav-links">
+                <a href="#overview">Visión General</a>
+                <a href="#stocks">Acciones Populares</a>
+                <a href="#advantages">Ventajas de Inversión</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区 -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Invierte en las Mejores Acciones del Mercado Bursátil Español</h1>
+            <p>Accede a análisis expertos, datos en tiempo real y oportunidades de inversión en la Bolsa de Madrid y más mercados españoles. Comienza tu viaje de inversión hoy mismo.</p>
+            <!-- 配置WhatsApp跳转号码+85266156468和预设打招呼语 -->
+            <a href="https://wa.me/85266156468?text=我想得到高潜力股票资讯，该如何加入群组" target="_blank" class="cta-btn">Contacta conmigo por WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- 主要内容区 -->
+    <section class="section">
+        <h2 class="section-title" id="overview">Visión General del Mercado Español</h2>
+
+        <!-- 市场概览模块 -->
+        <div class="market-overview">
+            <p>El mercado bursátil español, encabezado por la Bolsa de Madrid (BME), es uno de los más importantes de Europa. Cuenta con índices clave como el IBEX 35, que agrupa a las 35 empresas más capitalizadas del país, ofreciendo a los inversores una amplia gama de oportunidades en sectores como la banca, la energía, el turismo y la tecnología.</p>
+            
+            <div class="overview-grid">
+                <div class="overview-card">
+                    <h3>IBEX 35</h3>
+                    <p>Índice benchmark del mercado español, compuesto por las empresas con mayor liquidez y capitalización de mercado en la Bolsa de Madrid. Actualizado constantemente para reflejar la evolución del sector empresarial español.</p>
+                </div>
+                <div class="overview-card">
+                    <h3>Bolsa de Madrid (BME)</h3>
+                    <p>Plataforma de negociación líder en España, con más de 300 años de historia. Ofrece servicios de negociación de acciones, bonos, fondos de inversión y productos derivados para inversores nacionales e internacionales.</p>
+                </div>
+                <div class="overview-card">
+                    <h3>Sectores Destacados</h3>
+                    <p>Los sectores más representativos incluyen la banca (Santander, BBVA), energía (Repsol, Iberdrola), turismo (Amadeus, Iberia) y consumo masivo, con una fuerte presencia en el mercado europeo.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 热门股票模块 -->
+        <h2 class="section-title" id="stocks">Acciones Populares en España</h2>
+        <div class="stocks-grid">
+            <div class="stock-card">
+                <img src="https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Banco Santander" class="stock-img">
+                <div class="stock-content">
+                    <h3>Banco Santander</h3>
+                    <span class="stock-ticker">BME: SAN</span>
+                    <div class="stock-price price-up">
+                        <i class="fas fa-arrow-up"></i> 4.25 € (+1.8%)
+                    </div>
+                    <p>Uno de los bancos más grandes del mundo por activos, con presencia en más de 40 países. Destaca por su fortaleza en América Latina y su innovación en servicios financieros digitales.</p>
+                    <!-- 股票卡片链接同步配置相同号码和预设消息 -->
+                    <a href="https://wa.me/85266156468?text=我想得到高潜力股票资讯，该如何加入群组" target="_blank" class="stock-link">Contacta por WhatsApp <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="stock-card">
+                <img src="https://images.unsplash.com/photo-1547891613-4097d1309e00?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Iberdrola" class="stock-img">
+                <div class="stock-content">
+                    <h3>Iberdrola</h3>
+                    <span class="stock-ticker">BME: IBE</span>
+                    <div class="stock-price price-up">
+                        <i class="fas fa-arrow-up"></i> 12.80 € (+0.9%)
+                    </div>
+                    <p>Empresa líder mundial en energías renovables, con un fuerte compromiso con la transición energética. Opera parques eólicos, solares y centrales hidroeléctricas en todo el mundo.</p>
+                    <a href="https://wa.me/85266156468?text=我想得到高潜力股票资讯，该如何加入群组" target="_blank" class="stock-link">Contacta por WhatsApp <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="stock-card">
+                <img src="https://images.unsplash.com/photo-1518655048521-f130df041f66?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Repsol" class="stock-img">
+                <div class="stock-content">
+                    <h3>Repsol</h3>
+                    <span class="stock-ticker">BME: REP</span>
+                    <div class="stock-price price-down">
+                        <i class="fas fa-arrow-down"></i> 15.30 € (-0.5%)
+                    </div>
+                    <p>Grupo energético español con actividades en exploración y producción de petróleo y gas, refinación, comercialización y energías renovables. En proceso de transformación hacia la neutralidad climática.</p>
+                    <a href="https://wa.me/85266156468?text=我想得到高潜力股票资讯，该如何加入群组" target="_blank" class="stock-link">Contacta por WhatsApp <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 投资优势模块 -->
+    <section class="advantages" id="advantages">
+        <h2 class="section-title">Por Qué Invertir en Acciones Españolas</h2>
+        <div class="advantages-grid">
+            <div class="advantage-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Rendimiento Competitivo</h3>
+                <p>El mercado español ofrece rendimientos a largo plazo competitivos en comparación con otros mercados europeos, con oportunidades de crecimiento en sectores renovables y tecnológicos.</p>
+            </div>
+            <div class="advantage-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Estabilidad y Regulación</h3>
+                <p>Contado con un marco regulatorio robusto y transparente, administrado por la CNMV (Comisión Nacional del Mercado de Valores), que protege los intereses de los inversores.</p>
+            </div>
+            <div class="advantage-card">
+                <i class="fas fa-globe-europe"></i>
+                <h3>Presencia Internacional</h3>
+                <p>Las principales empresas españolas tienen una fuerte presencia global, lo que reduce la dependencia del mercado doméstico y ofrece diversificación geográfica a los inversores.</p>
+            </div>
+            <div class="advantage-card">
+                <i class="fas fa-dividend"></i>
+                <h3>Dividendos Consistentes</h3>
+                <p>Muchas empresas del IBEX 35 tienen una trayectoria de pago de dividendos consistentes, ofreciendo a los inversores ingresos pasivos además del potencial de apreciación del capital.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-container">
+            <a href="#" class="logo">Bolsa<span>España</span></a>
+            <div class="footer-links">
+                <a href="#">Acerca de Nosotros</a>
+                <a href="#">Términos y Condiciones</a>
+                <a href="#">Política de Privacidad</a>
+                <a href="#">Contacto</a>
+                <a href="#">Aviso Legal</a>
+            </div>
+            <p class="copyright">© 2026 BolsaEspaña. Todos los derechos reservados. La información contenida en esta página no constituye asesoramiento financiero.</p>
+        </div>
+    </footer>
+
+    <!-- 基础交互脚本 -->
+    <script>
+        // 移动端菜单切换（简易版）
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            // 移动端菜单布局适配
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.background = '#1a2537';
+                navLinks.style.padding = '1rem';
+                navLinks.style.gap = '1rem';
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
