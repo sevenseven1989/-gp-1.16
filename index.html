@@ -33,6 +33,10 @@
             --color-text-secondary: #34495e;
             --max-width: 1200px;
             --padding-section: 5rem 0;
+            /* 新增：WhatsApp 按钮背景框相关颜色 */
+            --whatsapp-bg: rgba(37, 211, 102, 0.1); /* 浅绿背景 */
+            --whatsapp-border: #25d366; /* WhatsApp 品牌绿边框 */
+            --whatsapp-hover-bg: rgba(37, 211, 102, 0.2); /* hover 加深背景 */
         }
         * {
             margin: 0;
@@ -143,11 +147,20 @@
             text-decoration: none;
             font-weight: 600;
             transition: background-color 0.3s ease, transform 0.3s ease;
+            /* 新增：WhatsApp 按钮背景框（英雄区主按钮） */
+            background-clip: padding-box;
+            border: 2px solid var(--whatsapp-border);
+            background-color: var(--whatsapp-bg);
+            color: var(--whatsapp-border);
+            position: relative;
+            box-shadow: 0 0 0 4px var(--whatsapp-bg);
+            border-radius: 8px;
         }
 
         .cta-btn:hover {
-            background-color: var(--color-accent-dark);
+            background-color: var(--whatsapp-hover-bg);
             transform: translateY(-3px);
+            box-shadow: 0 0 0 6px var(--whatsapp-hover-bg);
         }
 
         /* 通用内容容器样式 */
@@ -327,15 +340,24 @@
 
         .stock-link {
             display: inline-block;
-            color: var(--color-accent);
+            color: var(--whatsapp-border);
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            /* 新增：股票模块 WhatsApp 按钮背景框 */
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--whatsapp-border);
+            background-color: var(--whatsapp-bg);
+            border-radius: 8px;
+            box-shadow: 0 0 0 3px var(--whatsapp-bg);
         }
 
         .stock-link:hover {
-            color: var(--color-accent-dark);
-            text-decoration: underline;
+            color: var(--whatsapp-border);
+            text-decoration: none;
+            background-color: var(--whatsapp-hover-bg);
+            box-shadow: 0 0 0 5px var(--whatsapp-hover-bg);
+            transform: translateY(-2px);
         }
 
         /* 交易规则与投资贴士模块 */
@@ -491,6 +513,17 @@
                 padding: 1.5rem;
             }
 
+            /* 移动端 WhatsApp 按钮背景框适配 */
+            .cta-btn {
+                padding: 0.8rem 1.6rem;
+                font-size: 0.9rem;
+            }
+
+            .stock-link {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+            }
+
             /* 移动端菜单激活样式 */
             .nav-links.active {
                 display: flex;
@@ -532,7 +565,9 @@
             <h1>Invierte en las Mejores Acciones del Mercado Bursátil Español</h1>
             <p>Accede a análisis expertos, datos en tiempo real y oportunidades de inversión en la Bolsa de Madrid y más mercados españoles. Conoce el IBEX 35, las empresas líderes y las reglas para invertir con éxito.</p>
             <!-- 配置WhatsApp跳转号码+85266156468（格式兼容）+ 西班牙语预设消息，添加联系人追踪事件 -->
-            <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="cta-btn" onclick="trackContactEvent()">Contacta conmigo por WhatsApp</a>
+            <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="cta-btn" onclick="trackContactEvent()">
+                <i class="fab fa-whatsapp" style="margin-right: 0.5rem;"></i> Contacta conmigo por WhatsApp
+            </a>
         </div>
     </section>
 
@@ -625,7 +660,9 @@
                         <i class="fas fa-arrow-up"></i> 4.25 € (+1.8%)
                     </div>
                     <p>Uno de los bancos más grandes del mundo por activos, con presencia en más de 40 países. Destaca por su fortaleza en América Latina y su innovación en servicios financieros digitales. Pertenece al IBEX 35 desde su creación.</p>
-                    <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">Contacta por WhatsApp <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">
+                        <i class="fab fa-whatsapp" style="margin-right: 0.5rem;"></i> Contacta por WhatsApp
+                    </a>
                 </div>
             </div>
 
@@ -639,7 +676,9 @@
                         <i class="fas fa-arrow-up"></i> 12.80 € (+0.9%)
                     </div>
                     <p>Empresa líder mundial en energías renovables, con un fuerte compromiso con la transición energética. Opera parques eólicos, solares y centrales hidroeléctricas en todo el mundo. Uno de los componentes con mayor peso en el IBEX 35.</p>
-                    <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">Contacta por WhatsApp <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">
+                        <i class="fab fa-whatsapp" style="margin-right: 0.5rem;"></i> Contacta por WhatsApp
+                    </a>
                 </div>
             </div>
 
@@ -653,7 +692,9 @@
                         <i class="fas fa-arrow-down"></i> 15.30 € (-0.5%)
                     </div>
                     <p>Grupo energético español con actividades en exploración y producción de petróleo y gas, refinación, comercialización y energías renovables. En proceso de transformación hacia la neutralidad climática para 2050. Componente del IBEX 35.</p>
-                    <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">Contacta por WhatsApp <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">
+                        <i class="fab fa-whatsapp" style="margin-right: 0.5rem;"></i> Contacta por WhatsApp
+                    </a>
                 </div>
             </div>
 
@@ -667,7 +708,9 @@
                         <i class="fas fa-arrow-up"></i> 32.50 € (+1.2%)
                     </div>
                     <p>Grupo de moda retail global, propietario de marcas como Zara, Pull & Bear y Massimo Dutti. Con sede en Arteixo (Galicia), es la empresa con mayor capitalización de mercado del IBEX 35 y una de las más valoradas de Europa.</p>
-                    <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">Contacta por WhatsApp <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">
+                        <i class="fab fa-whatsapp" style="margin-right: 0.5rem;"></i> Contacta por WhatsApp
+                    </a>
                 </div>
             </div>
 
@@ -681,7 +724,9 @@
                         <i class="fas fa-arrow-up"></i> 58.70 € (+2.1%)
                     </div>
                     <p>Proveedor global de soluciones tecnológicas para la industria turística (aerolíneas, hoteles, agencias de viajes). Con sede en Madrid, es uno de los componentes más dinámicos del IBEX 35 con fuerte crecimiento internacional.</p>
-                    <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">Contacta por WhatsApp <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">
+                        <i class="fab fa-whatsapp" style="margin-right: 0.5rem;"></i> Contacta por WhatsApp
+                    </a>
                 </div>
             </div>
 
@@ -695,7 +740,9 @@
                         <i class="fas fa-arrow-up"></i> 7.80 € (+1.5%)
                     </div>
                     <p>Segundo banco más grande de España por activos, con fuerte presencia en América Latina (México, Argentina, Colombia) y digitalización avanzada. Componente clave del IBEX 35 con un dividend yield competitivo.</p>
-                    <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">Contacta por WhatsApp <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">
+                        <i class="fab fa-whatsapp" style="margin-right: 0.5rem;"></i> Contacta por WhatsApp
+                    </a>
                 </div>
             </div>
         </div>
