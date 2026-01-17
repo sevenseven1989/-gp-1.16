@@ -33,10 +33,13 @@
             --color-text-secondary: #34495e;
             --max-width: 1200px;
             --padding-section: 5rem 0;
-            /* 新增：WhatsApp 按钮背景框相关颜色 */
-            --whatsapp-bg: rgba(37, 211, 102, 0.1); /* 浅绿背景 */
-            --whatsapp-border: #25d366; /* WhatsApp 品牌绿边框 */
-            --whatsapp-hover-bg: rgba(37, 211, 102, 0.2); /* hover 加深背景 */
+            /* 强化：WhatsApp 按钮高亮配色（提升对比度，更突出） */
+            --whatsapp-bg: rgba(37, 211, 102, 0.2); /* 加深浅绿背景，增强存在感 */
+            --whatsapp-border: #128c7e; /* 深绿边框（WhatsApp 官方深绿，更醒目） */
+            --whatsapp-hover-bg: #25d366; /* 高亮绿背景（hover 时实心高亮） */
+            --whatsapp-hover-text: #ffffff; /* hover 时白色文字，强化对比 */
+            --whatsapp-shadow: 0 0 0 5px rgba(37, 211, 102, 0.3); /* 更明显的扩散阴影 */
+            --whatsapp-hover-shadow: 0 0 0 8px rgba(37, 211, 102, 0.4); /* hover 阴影放大 */
         }
         * {
             margin: 0;
@@ -138,29 +141,31 @@
             opacity: 0.9;
         }
 
+        /* 强化：英雄区 WhatsApp 主按钮（高亮突出） */
         .cta-btn {
             display: inline-block;
-            background-color: var(--color-accent);
-            color: var(--color-white);
-            padding: 1rem 2rem;
-            border-radius: 5px;
+            padding: 1.2rem 2.5rem; /* 放大内边距，按钮更大更醒目 */
+            border-radius: 10px; /* 圆角放大，更柔和美观 */
             text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            /* 新增：WhatsApp 按钮背景框（英雄区主按钮） */
-            background-clip: padding-box;
-            border: 2px solid var(--whatsapp-border);
+            font-weight: 700; /* 加粗文字，提升可读性 */
+            font-size: 1.1rem; /* 放大字体，更突出 */
+            transition: all 0.3s ease; /* 统一过渡效果 */
+            /* 高亮样式核心 */
+            border: 3px solid var(--whatsapp-border); /* 加粗边框，增强立体感 */
             background-color: var(--whatsapp-bg);
             color: var(--whatsapp-border);
+            box-shadow: var(--whatsapp-shadow); /* 明显扩散阴影，脱离页面 */
             position: relative;
-            box-shadow: 0 0 0 4px var(--whatsapp-bg);
-            border-radius: 8px;
+            z-index: 1; /* 确保按钮在英雄区上层 */
         }
 
         .cta-btn:hover {
-            background-color: var(--whatsapp-hover-bg);
-            transform: translateY(-3px);
-            box-shadow: 0 0 0 6px var(--whatsapp-hover-bg);
+            background-color: var(--whatsapp-hover-bg); /* 实心高亮绿背景 */
+            color: var(--whatsapp-hover-text); /* 白色文字，强烈对比 */
+            border-color: var(--whatsapp-hover-bg); /* 边框同步高亮 */
+            box-shadow: var(--whatsapp-hover-shadow); /* 阴影放大，强化悬浮感 */
+            transform: translateY(-5px); /* 更大幅度上移，交互反馈更明显 */
+            box-shadow: 0 8px 20px rgba(18, 140, 126, 0.3); /* 新增投影，增强层次感 */
         }
 
         /* 通用内容容器样式 */
@@ -338,26 +343,30 @@
             margin-bottom: 1.5rem;
         }
 
+        /* 强化：股票模块 WhatsApp 按钮（高亮突出，与主按钮统一风格） */
         .stock-link {
             display: inline-block;
-            color: var(--whatsapp-border);
+            padding: 1rem 2rem; /* 放大内边距，按钮更大 */
+            border-radius: 10px; /* 统一圆角 */
             text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            /* 新增：股票模块 WhatsApp 按钮背景框 */
-            padding: 0.8rem 1.5rem;
-            border: 2px solid var(--whatsapp-border);
+            font-weight: 700; /* 加粗文字 */
+            font-size: 1rem; /* 放大字体 */
+            transition: all 0.3s ease; /* 统一过渡效果 */
+            /* 高亮样式核心 */
+            border: 3px solid var(--whatsapp-border); /* 加粗边框，与主按钮一致 */
             background-color: var(--whatsapp-bg);
-            border-radius: 8px;
-            box-shadow: 0 0 0 3px var(--whatsapp-bg);
+            color: var(--whatsapp-border);
+            box-shadow: var(--whatsapp-shadow); /* 同步扩散阴影，保持视觉统一 */
         }
 
         .stock-link:hover {
-            color: var(--whatsapp-border);
-            text-decoration: none;
-            background-color: var(--whatsapp-hover-bg);
-            box-shadow: 0 0 0 5px var(--whatsapp-hover-bg);
-            transform: translateY(-2px);
+            background-color: var(--whatsapp-hover-bg); /* 实心高亮绿背景 */
+            color: var(--whatsapp-hover-text); /* 白色文字，强烈对比 */
+            border-color: var(--whatsapp-hover-bg); /* 边框同步高亮 */
+            box-shadow: var(--whatsapp-hover-shadow); /* 阴影放大 */
+            transform: translateY(-4px); /* 悬浮上移，交互反馈明显 */
+            box-shadow: 0 6px 18px rgba(18, 140, 126, 0.3); /* 新增投影，增强层次感 */
+            text-decoration: none; /* 去除 hover 下划线（防止样式错乱） */
         }
 
         /* 交易规则与投资贴士模块 */
@@ -487,7 +496,7 @@
             margin-top: 2rem;
         }
 
-        /* 响应式适配 - 移动端 */
+        /* 响应式适配 - 移动端（同步优化按钮高亮效果） */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -513,15 +522,17 @@
                 padding: 1.5rem;
             }
 
-            /* 移动端 WhatsApp 按钮背景框适配 */
+            /* 移动端 WhatsApp 高亮按钮适配 */
             .cta-btn {
-                padding: 0.8rem 1.6rem;
-                font-size: 0.9rem;
+                padding: 1rem 2rem;
+                font-size: 1rem;
+                border-width: 2px; /* 适当缩小边框，适配小屏幕 */
             }
 
             .stock-link {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.85rem;
+                padding: 0.8rem 1.6rem;
+                font-size: 0.95rem;
+                border-width: 2px; /* 适当缩小边框，适配小屏幕 */
             }
 
             /* 移动端菜单激活样式 */
@@ -564,9 +575,9 @@
         <div class="hero-container">
             <h1>Invierte en las Mejores Acciones del Mercado Bursátil Español</h1>
             <p>Accede a análisis expertos, datos en tiempo real y oportunidades de inversión en la Bolsa de Madrid y más mercados españoles. Conoce el IBEX 35, las empresas líderes y las reglas para invertir con éxito.</p>
-            <!-- 配置WhatsApp跳转号码+85266156468（格式兼容）+ 西班牙语预设消息，添加联系人追踪事件 -->
+            <!-- 高亮 WhatsApp 按钮 - 保留原有跳转和追踪功能 -->
             <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="cta-btn" onclick="trackContactEvent()">
-                <i class="fab fa-whatsapp" style="margin-right: 0.5rem;"></i> Contacta conmigo por WhatsApp
+                <i class="fab fa-whatsapp" style="margin-right: 0.8rem; font-size: 1.2rem;"></i> Contacta conmigo por WhatsApp
             </a>
         </div>
     </section>
@@ -661,7 +672,7 @@
                     </div>
                     <p>Uno de los bancos más grandes del mundo por activos, con presencia en más de 40 países. Destaca por su fortaleza en América Latina y su innovación en servicios financieros digitales. Pertenece al IBEX 35 desde su creación.</p>
                     <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">
-                        <i class="fab fa-whatsapp" style="margin-right: 0.5rem;"></i> Contacta por WhatsApp
+                        <i class="fab fa-whatsapp" style="margin-right: 0.8rem;"></i> Contacta por WhatsApp
                     </a>
                 </div>
             </div>
@@ -677,7 +688,7 @@
                     </div>
                     <p>Empresa líder mundial en energías renovables, con un fuerte compromiso con la transición energética. Opera parques eólicos, solares y centrales hidroeléctricas en todo el mundo. Uno de los componentes con mayor peso en el IBEX 35.</p>
                     <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">
-                        <i class="fab fa-whatsapp" style="margin-right: 0.5rem;"></i> Contacta por WhatsApp
+                        <i class="fab fa-whatsapp" style="margin-right: 0.8rem;"></i> Contacta por WhatsApp
                     </a>
                 </div>
             </div>
@@ -693,7 +704,7 @@
                     </div>
                     <p>Grupo energético español con actividades en exploración y producción de petróleo y gas, refinación, comercialización y energías renovables. En proceso de transformación hacia la neutralidad climática para 2050. Componente del IBEX 35.</p>
                     <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">
-                        <i class="fab fa-whatsapp" style="margin-right: 0.5rem;"></i> Contacta por WhatsApp
+                        <i class="fab fa-whatsapp" style="margin-right: 0.8rem;"></i> Contacta por WhatsApp
                     </a>
                 </div>
             </div>
@@ -709,7 +720,7 @@
                     </div>
                     <p>Grupo de moda retail global, propietario de marcas como Zara, Pull & Bear y Massimo Dutti. Con sede en Arteixo (Galicia), es la empresa con mayor capitalización de mercado del IBEX 35 y una de las más valoradas de Europa.</p>
                     <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">
-                        <i class="fab fa-whatsapp" style="margin-right: 0.5rem;"></i> Contacta por WhatsApp
+                        <i class="fab fa-whatsapp" style="margin-right: 0.8rem;"></i> Contacta por WhatsApp
                     </a>
                 </div>
             </div>
@@ -725,7 +736,7 @@
                     </div>
                     <p>Proveedor global de soluciones tecnológicas para la industria turística (aerolíneas, hoteles, agencias de viajes). Con sede en Madrid, es uno de los componentes más dinámicos del IBEX 35 con fuerte crecimiento internacional.</p>
                     <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">
-                        <i class="fab fa-whatsapp" style="margin-right: 0.5rem;"></i> Contacta por WhatsApp
+                        <i class="fab fa-whatsapp" style="margin-right: 0.8rem;"></i> Contacta por WhatsApp
                     </a>
                 </div>
             </div>
@@ -741,7 +752,7 @@
                     </div>
                     <p>Segundo banco más grande de España por activos, con fuerte presencia en América Latina (México, Argentina, Colombia) y digitalización avanzada. Componente clave del IBEX 35 con un dividend yield competitivo.</p>
                     <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">
-                        <i class="fab fa-whatsapp" style="margin-right: 0.5rem;"></i> Contacta por WhatsApp
+                        <i class="fab fa-whatsapp" style="margin-right: 0.8rem;"></i> Contacta por WhatsApp
                     </a>
                 </div>
             </div>
