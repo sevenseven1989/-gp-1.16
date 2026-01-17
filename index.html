@@ -140,7 +140,7 @@
             opacity: 0.9;
         }
 
-        /* 英雄区 WhatsApp 主按钮（高亮绿 + 完整背景框 + 突出图标 + 文字同行） */
+        /* 英雄区 WhatsApp 主按钮（仅保留此按钮 + 完整背景框 + 突出图标 + 文字同行） */
         .cta-btn {
             /* 核心：调整背景框尺寸，确保完整无截断、适配内容 */
             display: inline-flex;
@@ -185,7 +185,7 @@
             border-radius: 12px;
         }
 
-        /* 通用内容容器样式 */
+        /* 通用内容容器样式（保留基础，移除其他按钮相关样式） */
         .section {
             padding: var(--padding-section);
             width: 90%;
@@ -208,7 +208,7 @@
             font-weight: 600;
         }
 
-        /* 市场概览模块 */
+        /* 市场概览模块（仅保留结构，移除内部按钮） */
         .market-overview {
             background-color: var(--color-white);
             border-radius: 10px;
@@ -247,7 +247,7 @@
             color: var(--color-text-secondary);
         }
 
-        /* IBEX 35 专属模块 */
+        /* IBEX 35 专属模块（仅保留结构，移除内部按钮） */
         .ibex35-section {
             background-color: #fdfbf8;
             border-radius: 10px;
@@ -294,7 +294,7 @@
             margin-bottom: 0.7rem;
         }
 
-        /* 热门股票模块 */
+        /* 热门股票模块（移除所有内部WhatsApp按钮） */
         .stocks-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -360,50 +360,7 @@
             margin-bottom: 1.5rem;
         }
 
-        /* 股票模块 WhatsApp 按钮（完整背景框 + 风格统一） */
-        .stock-link {
-            /* 核心：股票模块按钮背景框完整配置 */
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            white-space: nowrap;
-            padding: 1.2rem 2.6rem; /* 优化内边距，完整包裹内容 */
-            width: auto; /* 自动适配，不截断 */
-            min-width: 240px; /* 最小宽度，保证背景框美观 */
-            border-radius: 12px; /* 统一圆角，背景框边角完整 */
-            /* 高亮绿基础样式 */
-            border: 3px solid var(--whatsapp-border);
-            background-color: var(--whatsapp-bg);
-            color: var(--whatsapp-text);
-            box-shadow: var(--whatsapp-shadow);
-            /* 文字与交互样式 */
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            overflow: visible; /* 阴影不截断，背景框视觉完整 */
-        }
-
-        /* 突出股票模块 WhatsApp 电话图标 */
-        .stock-link .fab.fa-whatsapp {
-            font-size: 1.4rem; /* 放大图标，比例协调 */
-            margin-right: 0.9rem; /* 合理间距，适配背景框 */
-            line-height: 1;
-        }
-
-        .stock-link:hover {
-            background-color: var(--whatsapp-hover-bg);
-            color: var(--whatsapp-text);
-            border-color: var(--whatsapp-border);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(18, 140, 126, 0.3);
-            text-decoration: none;
-            /* hover 时背景框保持完整，无变形 */
-            padding: 1.2rem 2.6rem;
-            border-radius: 12px;
-        }
-
-        /* 交易规则与投资贴士模块 */
+        /* 交易规则与投资贴士模块（仅保留结构，无按钮） */
         .trading-tips {
             background-color: var(--color-white);
             border-radius: 10px;
@@ -443,7 +400,7 @@
             line-height: 1.7;
         }
 
-        /* 投资优势模块 */
+        /* 投资优势模块（仅保留结构，无按钮） */
         .advantages {
             background-color: var(--color-primary);
             color: var(--color-white);
@@ -556,7 +513,7 @@
                 padding: 1.5rem;
             }
 
-            /* 移动端 WhatsApp 按钮背景框适配，保持完整无截断 */
+            /* 移动端 WhatsApp 主按钮背景框适配，保持完整无截断 */
             .cta-btn {
                 padding: 1.2rem 2.4rem;
                 font-size: 1rem;
@@ -567,18 +524,6 @@
 
             .cta-btn .fab.fa-whatsapp {
                 font-size: 1.4rem;
-            }
-
-            .stock-link {
-                padding: 1rem 2rem;
-                font-size: 0.95rem;
-                border-width: 2px;
-                min-width: 200px; /* 移动端最小宽度，背景框不塌陷 */
-                border-radius: 12px; /* 圆角保留，背景框完整 */
-            }
-
-            .stock-link .fab.fa-whatsapp {
-                font-size: 1.2rem;
             }
 
             /* 移动端菜单激活样式 */
@@ -599,7 +544,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- 导航栏 -->
+    <!-- 导航栏：修改"Ventajas de Inversión"为"Contacta por WhatsApp" -->
     <header>
         <div class="nav-container">
             <a href="#" class="logo">Bolsa<span>España</span></a>
@@ -608,7 +553,7 @@
                 <a href="#ibex35">IBEX 35</a>
                 <a href="#stocks">Acciones Populares</a>
                 <a href="#trading">Reglas & Consejos</a>
-                <a href="#advantages">Ventajas de Inversión</a>
+                <a href="#advantages">Contacta por WhatsApp</a> <!-- 核心修改：导航栏文字替换 -->
             </div>
             <div class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
@@ -616,23 +561,23 @@
         </div>
     </header>
 
-    <!-- 英雄区 -->
+    <!-- 英雄区：仅保留此WhatsApp按钮，移除其他所有区域的按钮 -->
     <section class="hero">
         <div class="hero-container">
             <h1>Invierte en las Mejores Acciones del Mercado Bursátil Español</h1>
             <p>Accede a análisis expertos, datos en tiempo real y oportunidades de inversión en la Bolsa de Madrid y más mercados españoles. Conoce el IBEX 35, las empresas líderes y las reglas para invertir con éxito.</p>
-            <!-- WhatsApp 按钮（完整背景框 + 高亮绿 + 突出图标 + 文字同行） -->
+            <!-- 仅保留此顶部WhatsApp按钮（完整背景框 + 高亮绿 + 突出图标 + 文字同行） -->
             <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="cta-btn" onclick="trackContactEvent()">
                 <i class="fab fa-whatsapp"></i> Contacta conmigo por WhatsApp
             </a>
         </div>
     </section>
 
-    <!-- 主要内容区 -->
+    <!-- 主要内容区：移除所有内部WhatsApp按钮，仅保留页面结构 -->
     <section class="section">
         <h2 class="section-title" id="overview">Visión General del Mercado Bursátil Español</h2>
 
-        <!-- 市场概览模块 -->
+        <!-- 市场概览模块：无按钮 -->
         <div class="market-overview">
             <p>El mercado bursátil español, encabezado por la Bolsa de Madrid (BME) — fundada en 1809 y actualmente parte del grupo Euronext — es uno de los más importantes y liquidos de Europa. Cuenta con índices clave como el IBEX 35, el IBEX Small Cap y el IBEX Mid Cap, que agrupan a empresas de diferentes tamaños y sectores, ofreciendo a los inversores una amplia gama de oportunidades en banca, energía, turismo, tecnología y consumo masivo.</p>
             <p class="mt-2" style="margin-top: 1rem; color: var(--color-text-secondary); font-size: 0.95rem;">En 2025, la capitalización de mercado de la BME supera los 1.2 billones de euros, con más de 300 empresas cotizadas y una presencia internacional que atrae a inversores de todo el mundo, especialmente de América Latina y Europa occidental.</p>
@@ -657,7 +602,7 @@
             </div>
         </div>
 
-        <!-- IBEX 35 专属模块（核心内容） -->
+        <!-- IBEX 35 专属模块：无按钮 -->
         <h2 class="section-title" id="ibex35">IBEX 35 - El Índice Icono de España</h2>
         <p class="section-subtitle">Conoce los detalles del índice más importante del mercado bursátil español</p>
         <div class="ibex35-section">
@@ -704,7 +649,7 @@
             </div>
         </div>
 
-        <!-- 热门股票模块 -->
+        <!-- 热门股票模块：移除所有内部WhatsApp按钮 -->
         <h2 class="section-title" id="stocks">Acciones Populares en España (IBEX 35)</h2>
         <div class="stocks-grid">
             <div class="stock-card">
@@ -716,9 +661,6 @@
                         <i class="fas fa-arrow-up"></i> 4.25 € (+1.8%)
                     </div>
                     <p>Uno de los bancos más grandes del mundo por activos, con presencia en más de 40 países. Destaca por su fortaleza en América Latina y su innovación en servicios financieros digitales. Pertenece al IBEX 35 desde su creación.</p>
-                    <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">
-                        <i class="fab fa-whatsapp"></i> Contacta por WhatsApp
-                    </a>
                 </div>
             </div>
 
@@ -731,9 +673,6 @@
                         <i class="fas fa-arrow-up"></i> 12.80 € (+0.9%)
                     </div>
                     <p>Empresa líder mundial en energías renovables, con un fuerte compromiso con la transición energética. Opera parques eólicos, solares y centrales hidroeléctricas en todo el mundo. Uno de los componentes con mayor peso en el IBEX 35.</p>
-                    <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">
-                        <i class="fab fa-whatsapp"></i> Contacta por WhatsApp
-                    </a>
                 </div>
             </div>
 
@@ -746,9 +685,6 @@
                         <i class="fas fa-arrow-down"></i> 15.30 € (-0.5%)
                     </div>
                     <p>Grupo energético español con actividades en exploración y producción de petróleo y gas, refinación, comercialización y energías renovables. En proceso de transformación hacia la neutralidad climática para 2050. Componente del IBEX 35.</p>
-                    <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">
-                        <i class="fab fa-whatsapp"></i> Contacta por WhatsApp
-                    </a>
                 </div>
             </div>
 
@@ -761,9 +697,6 @@
                         <i class="fas fa-arrow-up"></i> 32.50 € (+1.2%)
                     </div>
                     <p>Grupo de moda retail global, propietario de marcas como Zara, Pull & Bear y Massimo Dutti. Con sede en Arteixo (Galicia), es la empresa con mayor capitalización de mercado del IBEX 35 y una de las más valoradas de Europa.</p>
-                    <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">
-                        <i class="fab fa-whatsapp"></i> Contacta por WhatsApp
-                    </a>
                 </div>
             </div>
 
@@ -776,9 +709,6 @@
                         <i class="fas fa-arrow-up"></i> 58.70 € (+2.1%)
                     </div>
                     <p>Proveedor global de soluciones tecnológicas para la industria turística (aerolíneas, hoteles, agencias de viajes). Con sede en Madrid, es uno de los componentes más dinámicos del IBEX 35 con fuerte crecimiento internacional.</p>
-                    <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">
-                        <i class="fab fa-whatsapp"></i> Contacta por WhatsApp
-                    </a>
                 </div>
             </div>
 
@@ -791,14 +721,11 @@
                         <i class="fas fa-arrow-up"></i> 7.80 € (+1.5%)
                     </div>
                     <p>Segundo banco más grande de España por activos, con fuerte presencia en América Latina (México, Argentina, Colombia) y digitalización avanzada. Componente clave del IBEX 35 con un dividend yield competitivo.</p>
-                    <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link" onclick="trackContactEvent()">
-                        <i class="fab fa-whatsapp"></i> Contacta por WhatsApp
-                    </a>
                 </div>
             </div>
         </div>
 
-        <!-- 交易规则与投资贴士模块 -->
+        <!-- 交易规则与投资贴士模块：无按钮 -->
         <h2 class="section-title" id="trading">Reglas de Negociación & Consejos de Inversión</h2>
         <div class="trading-tips">
             <div class="tips-grid">
@@ -830,9 +757,9 @@
         </div>
     </section>
 
-    <!-- 投资优势模块 -->
+    <!-- 投资优势模块：无按钮，导航栏对应文字已修改 -->
     <section class="advantages" id="advantages">
-        <h2 class="section-title">Por Qué Invertir en Acciones Españolas</h2>
+        <h2 class="section-title">Contacta por WhatsApp</h2>
         <div class="advantages-grid">
             <div class="advantage-card">
                 <i class="fas fa-chart-line"></i>
