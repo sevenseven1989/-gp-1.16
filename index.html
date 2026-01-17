@@ -4,6 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acciones Españolas - Inversión en el Mercado Bursátil Español</title>
+    <!-- Meta Pixel Code - 集成Facebook像素追踪 -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2045939586196172');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2045939586196172&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
     <style>
         /* 全局样式重置与基础设置 */
         * {
@@ -134,6 +151,14 @@
             color: #1a2537;
         }
 
+        .section-subtitle {
+            font-size: 1.3rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #e67e22;
+            font-weight: 600;
+        }
+
         /* 市场概览模块 */
         .market-overview {
             background-color: #ffffff;
@@ -171,6 +196,53 @@
         .overview-card p {
             font-size: 0.95rem;
             color: #34495e;
+        }
+
+        /* IBEX 35 专属模块 */
+        .ibex35-section {
+            background-color: #fdfbf8;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            padding: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .ibex35-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .ibex35-facts {
+            padding: 1.5rem;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+
+        .ibex35-facts h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #1a2537;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ibex35-facts h3 i {
+            color: #f39c12;
+        }
+
+        .ibex35-facts ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            color: #34495e;
+            font-size: 0.95rem;
+        }
+
+        .ibex35-facts ul li {
+            margin-bottom: 0.7rem;
         }
 
         /* 热门股票模块 */
@@ -250,6 +322,46 @@
         .stock-link:hover {
             color: #e67e22;
             text-decoration: underline;
+        }
+
+        /* 交易规则与投资贴士模块 */
+        .trading-tips {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            padding: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tip-card {
+            padding: 1.8rem;
+            border-radius: 8px;
+            background-color: #fdfbf8;
+            border-top: 4px solid #e67e22;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .tip-card:hover {
+            box-shadow: 0 4px 10px rgba(230, 126, 34, 0.15);
+        }
+
+        .tip-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #1a2537;
+        }
+
+        .tip-card p {
+            font-size: 0.95rem;
+            color: #34495e;
+            line-height: 1.7;
         }
 
         /* 投资优势模块 */
@@ -356,6 +468,27 @@
             .section-title {
                 font-size: 1.7rem;
             }
+
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .ibex35-section, .trading-tips {
+                padding: 1.5rem;
+            }
+
+            /* 移动端菜单激活样式 */
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #1a2537;
+                padding: 1rem;
+                gap: 1rem;
+            }
         }
     </style>
     <!-- 引入图标库 -->
@@ -368,7 +501,9 @@
             <a href="#" class="logo">Bolsa<span>España</span></a>
             <div class="nav-links">
                 <a href="#overview">Visión General</a>
+                <a href="#ibex35">IBEX 35</a>
                 <a href="#stocks">Acciones Populares</a>
+                <a href="#trading">Reglas & Consejos</a>
                 <a href="#advantages">Ventajas de Inversión</a>
             </div>
             <div class="mobile-menu-btn">
@@ -381,7 +516,7 @@
     <section class="hero">
         <div class="hero-container">
             <h1>Invierte en las Mejores Acciones del Mercado Bursátil Español</h1>
-            <p>Accede a análisis expertos, datos en tiempo real y oportunidades de inversión en la Bolsa de Madrid y más mercados españoles. Comienza tu viaje de inversión hoy mismo.</p>
+            <p>Accede a análisis expertos, datos en tiempo real y oportunidades de inversión en la Bolsa de Madrid y más mercados españoles. Conoce el IBEX 35, las empresas líderes y las reglas para invertir con éxito.</p>
             <!-- 配置WhatsApp跳转号码+85266156468（格式兼容）+ 西班牙语预设消息 -->
             <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="cta-btn">Contacta conmigo por WhatsApp</a>
         </div>
@@ -389,11 +524,12 @@
 
     <!-- 主要内容区 -->
     <section class="section">
-        <h2 class="section-title" id="overview">Visión General del Mercado Español</h2>
+        <h2 class="section-title" id="overview">Visión General del Mercado Bursátil Español</h2>
 
         <!-- 市场概览模块 -->
         <div class="market-overview">
-            <p>El mercado bursátil español, encabezado por la Bolsa de Madrid (BME), es uno de los más importantes de Europa. Cuenta con índices clave como el IBEX 35, que agrupa a las 35 empresas más capitalizadas del país, ofreciendo a los inversores una amplia gama de oportunidades en sectores como la banca, la energía, el turismo y la tecnología.</p>
+            <p>El mercado bursátil español, encabezado por la Bolsa de Madrid (BME) — fundada en 1809 y actualmente parte del grupo Euronext — es uno de los más importantes y liquidos de Europa. Cuenta con índices clave como el IBEX 35, el IBEX Small Cap y el IBEX Mid Cap, que agrupan a empresas de diferentes tamaños y sectores, ofreciendo a los inversores una amplia gama de oportunidades en banca, energía, turismo, tecnología y consumo masivo.</p>
+            <p class="mt-2" style="margin-top: 1rem; color: #34495e; font-size: 0.95rem;">En 2025, la capitalización de mercado de la BME supera los 1.2 billones de euros, con más de 300 empresas cotizadas y una presencia internacional que atrae a inversores de todo el mundo, especialmente de América Latina y Europa occidental.</p>
             
             <div class="overview-grid">
                 <div class="overview-card">
@@ -408,49 +544,169 @@
                     <h3>Sectores Destacados</h3>
                     <p>Los sectores más representativos incluyen la banca (Santander, BBVA), energía (Repsol, Iberdrola), turismo (Amadeus, Iberia) y consumo masivo, con una fuerte presencia en el mercado europeo.</p>
                 </div>
+                <div class="overview-card">
+                    <h3>Horario de Negociación</h3>
+                    <p>La sesión continua de la Bolsa de Madrid se desarrolla de lunes a viernes, de 9:00 a 17:30 hora española (CET/CEST). La sesión premercado comienza a las 8:00 y la postmercado a las 17:30.</p>
+                </div>
             </div>
         </div>
 
-        <!-- 热门股票模块 -->
-        <h2 class="section-title" id="stocks">Acciones Populares en España</h2>
+        <!-- IBEX 35 专属模块（新增核心内容） -->
+        <h2 class="section-title" id="ibex35">IBEX 35 - El Índice Icono de España</h2>
+        <p class="section-subtitle">Conoce los detalles del índice más importante del mercado bursátil español</p>
+        <div class="ibex35-section">
+            <p>El IBEX 35 es el índice bursátil referencia de España, creado en 1992. Agrupa a las 35 empresas cotizadas en la Bolsa de Madrid con mayor capitalización de mercado y liquidez, representando aproximadamente el 80% de la capitalización total del mercado español. Se revisa trimestralmente (en enero, abril, julio y octubre) para mantener su representatividad.</p>
+            
+            <div class="ibex35-grid">
+                <div class="ibex35-facts">
+                    <h3><i class="fas fa-list-ul"></i> Características Clave</h3>
+                    <ul>
+                        <li>Base de cálculo: 31 de diciembre de 1989, con un valor inicial de 3.000 puntos.</li>
+                        <li>Cálculo: Índice ponderado por capitalización de mercado, ajustado por dividendos y acciones nuevas.</li>
+                        <li>Empresas destacadas: Santander, Iberdrola, BBVA, Repsol, Inditex, Amadeus.</li>
+                        <li>Maximo histórico: Más de 15.000 puntos (en noviembre de 2007, antes de la crisis financiera).</li>
+                    </ul>
+                </div>
+                <div class="ibex35-facts">
+                    <h3><i class="fas fa-chart-pie"></i> Distribución por Sectores (2025)</h3>
+                    <ul>
+                        <li>Energía y Utilidades: ~25% (Iberdrola, Repsol, Naturgy)</li>
+                        <li>Banca y Finanzas: ~22% (Santander, BBVA, Bankinter)</li>
+                        <li>Consumo y Retail: ~18% (Inditex, Mercadona, El Corte Inglés)</li>
+                        <li>Tecnología y Turismo: ~15% (Amadeus, Cellnex, Iberia)</li>
+                        <li>Industria y Construcción: ~20% (ACS, Ferrovial, ArcelorMittal España)</li>
+                    </ul>
+                </div>
+                <div class="ibex35-facts">
+                    <h3><i class="fas fa-arrow-trend-up"></i> Rendimiento Histórico</h3>
+                    <ul>
+                        <li>Rendimiento anual promedio (2010-2025): ~7.5% (incluyendo dividendos).</li>
+                        <li>Mejor año: 2019, con un incremento de más del 20%.</li>
+                        <li>Dividend yield promedio: ~4.2% (superior al promedio europeo de ~3.5%).</li>
+                        <li>Correlación con el Euro Stoxx 50: ~0.85 (alta sincronización con el mercado europeo).</li>
+                    </ul>
+                </div>
+                <div class="ibex35-facts">
+                    <h3><i class="fas fa-star"></i> Empresas Líderes del IBEX 35</h3>
+                    <ul>
+                        <li>Inditex (INDITEX): Grupo de moda global, propietario de Zara (mayor capitalización).</li>
+                        <li>Iberdrola (IBE): Líder mundial en energías renovables (eólica y solar).</li>
+                        <li>Amadeus (AMS): Proveedor global de soluciones para la industria turística.</li>
+                        <li>Cellnex (CLNX): Líder europeo en infraestructuras de telecomunicaciones.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 热门股票模块（补充新增企业） -->
+        <h2 class="section-title" id="stocks">Acciones Populares en España (IBEX 35)</h2>
         <div class="stocks-grid">
             <div class="stock-card">
-                <img src="https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Banco Santander" class="stock-img">
+                <img src="https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Banco Santander" class="stock-img" loading="lazy">
                 <div class="stock-content">
                     <h3>Banco Santander</h3>
                     <span class="stock-ticker">BME: SAN</span>
                     <div class="stock-price price-up">
                         <i class="fas fa-arrow-up"></i> 4.25 € (+1.8%)
                     </div>
-                    <p>Uno de los bancos más grandes del mundo por activos, con presencia en más de 40 países. Destaca por su fortaleza en América Latina y su innovación en servicios financieros digitales.</p>
-                    <!-- 股票卡片链接同步配置相同号码和西班牙语预设消息 -->
+                    <p>Uno de los bancos más grandes del mundo por activos, con presencia en más de 40 países. Destaca por su fortaleza en América Latina y su innovación en servicios financieros digitales. Pertenece al IBEX 35 desde su creación.</p>
                     <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link">Contacta por WhatsApp <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
 
             <div class="stock-card">
-                <img src="https://images.unsplash.com/photo-1547891613-4097d1309e00?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Iberdrola" class="stock-img">
+                <img src="https://images.unsplash.com/photo-1547891613-4097d1309e00?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Iberdrola" class="stock-img" loading="lazy">
                 <div class="stock-content">
                     <h3>Iberdrola</h3>
                     <span class="stock-ticker">BME: IBE</span>
                     <div class="stock-price price-up">
                         <i class="fas fa-arrow-up"></i> 12.80 € (+0.9%)
                     </div>
-                    <p>Empresa líder mundial en energías renovables, con un fuerte compromiso con la transición energética. Opera parques eólicos, solares y centrales hidroeléctricas en todo el mundo.</p>
+                    <p>Empresa líder mundial en energías renovables, con un fuerte compromiso con la transición energética. Opera parques eólicos, solares y centrales hidroeléctricas en todo el mundo. Uno de los componentes con mayor peso en el IBEX 35.</p>
                     <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link">Contacta por WhatsApp <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
 
             <div class="stock-card">
-                <img src="https://images.unsplash.com/photo-1518655048521-f130df041f66?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Repsol" class="stock-img">
+                <img src="https://images.unsplash.com/photo-1518655048521-f130df041f66?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Repsol" class="stock-img" loading="lazy">
                 <div class="stock-content">
                     <h3>Repsol</h3>
                     <span class="stock-ticker">BME: REP</span>
                     <div class="stock-price price-down">
                         <i class="fas fa-arrow-down"></i> 15.30 € (-0.5%)
                     </div>
-                    <p>Grupo energético español con actividades en exploración y producción de petróleo y gas, refinación, comercialización y energías renovables. En proceso de transformación hacia la neutralidad climática.</p>
+                    <p>Grupo energético español con actividades en exploración y producción de petróleo y gas, refinación, comercialización y energías renovables. En proceso de transformación hacia la neutralidad climática para 2050. Componente del IBEX 35.</p>
                     <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link">Contacta por WhatsApp <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="stock-card">
+                <img src="https://images.unsplash.com/photo-1593720213428-28a5b9e94613?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Inditex" class="stock-img" loading="lazy">
+                <div class="stock-content">
+                    <h3>Inditex</h3>
+                    <span class="stock-ticker">BME: ITX</span>
+                    <div class="stock-price price-up">
+                        <i class="fas fa-arrow-up"></i> 32.50 € (+1.2%)
+                    </div>
+                    <p>Grupo de moda retail global, propietario de marcas como Zara, Pull & Bear y Massimo Dutti. Con sede en Arteixo (Galicia), es la empresa con mayor capitalización de mercado del IBEX 35 y una de las más valoradas de Europa.</p>
+                    <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link">Contacta por WhatsApp <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="stock-card">
+                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Amadeus" class="stock-img" loading="lazy">
+                <div class="stock-content">
+                    <h3>Amadeus IT Group</h3>
+                    <span class="stock-ticker">BME: AMS</span>
+                    <div class="stock-price price-up">
+                        <i class="fas fa-arrow-up"></i> 58.70 € (+2.1%)
+                    </div>
+                    <p>Proveedor global de soluciones tecnológicas para la industria turística (aerolíneas, hoteles, agencias de viajes). Con sede en Madrid, es uno de los componentes más dinámicos del IBEX 35 con fuerte crecimiento internacional.</p>
+                    <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link">Contacta por WhatsApp <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="stock-card">
+                <img src="https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="BBVA" class="stock-img" loading="lazy">
+                <div class="stock-content">
+                    <h3>Banco Bilbao Vizcaya Argentaria (BBVA)</h3>
+                    <span class="stock-ticker">BME: BBVA</span>
+                    <div class="stock-price price-up">
+                        <i class="fas fa-arrow-up"></i> 7.80 € (+1.5%)
+                    </div>
+                    <p>Segundo banco más grande de España por activos, con fuerte presencia en América Latina (México, Argentina, Colombia) y digitalización avanzada. Componente clave del IBEX 35 con un dividend yield competitivo.</p>
+                    <a href="https://wa.me/85266156468?text=Quiero obtener información sobre acciones de alto potencial, ¿cómo puedo unirme al grupo?" target="_blank" class="stock-link">Contacta por WhatsApp <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 交易规则与投资贴士模块（新增核心内容） -->
+        <h2 class="section-title" id="trading">Reglas de Negociación & Consejos de Inversión</h2>
+        <div class="trading-tips">
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h3><i class="fas fa-clock" style="color: #e67e22; margin-right: 0.5rem;"></i> Horarios y Sesiones</h3>
+                    <p>La Bolsa de Madrid opera de lunes a viernes (excluyendo festivos nacionales y europeos). La sesión premercado es de 8:00 a 9:00, la sesión continua (principal) de 9:00 a 17:30, y la postmercado de 17:30 a 18:30. Los precios se determinan por oferta y demanda en la sesión continua.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-handshake" style="color: #e67e22; margin-right: 0.5rem;"></i> Requisitos para Invertir</h3>
+                    <p>Para invertir en acciones españolas, necesitas una cuenta de inversión con un broker regulado por la CNMV (Comisión Nacional del Mercado de Valores). Los brokers online son la opción más popular para inversores particulares, con comisiones reducidas y acceso a la BME y mercados internacionales.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-shield-alt" style="color: #e67e22; margin-right: 0.5rem;"></i> Regulación y Protección</h3>
+                    <p>El mercado español está regulado por la CNMV, que velar por la transparencia y la protección de los inversores. Además, las cuentas de inversión están protegidas por el Fondo de Garantía de Inversores (FGI) hasta 100.000 euros por inversor y por broker, en caso de quiebra del intermediario.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-lightbulb" style="color: #e67e22; margin-right: 0.5rem;"></i> Consejos para Inversores</h3>
+                    <p>1. Diversifica tu cartera en diferentes sectores del IBEX 35 para reducir riesgos. 2. Aprovecha el alto dividend yield del mercado español para ingresos pasivos a largo plazo. 3. Mantente informado sobre las revisiones trimestrales del IBEX 35, ya que pueden afectar el precio de las acciones. 4. Considera la volatilidad del mercado europeo al tomar decisiones.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-euro-sign" style="color: #e67e22; margin-right: 0.5rem;"></i> Dividendos y Tributación</h3>
+                    <p>Los dividendos de empresas españolas están sujetos a una retención en origen del 19% (para residentes en España). Para residentes en el extranjero, la retención depende del tratado de doble imposición entre España y su país de residencia. La mayoría de empresas del IBEX 35 pagan dividendos semestralmente o anualemente.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-chart-line" style="color: #e67e22; margin-right: 0.5rem;"></i> Tendencias a Largo Plazo</h3>
+                    <p>Las tendencias clave del mercado español incluyen la transición energética (Iberdrola, Repsol), la digitalización bancaria (Santander, BBVA), el crecimiento del retail global (Inditex) y la recuperación del turismo (Amadeus, Iberia). Estas tendencias son drivers de crecimiento para las empresas del IBEX 35 a largo plazo.</p>
                 </div>
             </div>
         </div>
@@ -480,6 +736,16 @@
                 <h3>Dividendos Consistentes</h3>
                 <p>Muchas empresas del IBEX 35 tienen una trayectoria de pago de dividendos consistentes, ofreciendo a los inversores ingresos pasivos además del potencial de apreciación del capital.</p>
             </div>
+            <div class="advantage-card">
+                <i class="fas fa-solar-panel"></i>
+                <h3>Crecimiento en Renovables</h3>
+                <p>España es líder en energías renovables en Europa, con empresas como Iberdrola que lideran la transición energética, ofreciendo oportunidades de inversión a largo plazo.</p>
+            </div>
+            <div class="advantage-card">
+                <i class="fas fa-hand-holding-euro"></i>
+                <h3>Costos Reducidos</h3>
+                <p>Los brokers online ofrecen comisiones de negociación reducidas para acciones del IBEX 35, haciendo que la inversión sea accesible para inversores particulares de todos los tamaños.</p>
+            </div>
         </div>
     </section>
 
@@ -493,45 +759,28 @@
                 <a href="#">Política de Privacidad</a>
                 <a href="#">Contacto</a>
                 <a href="#">Aviso Legal</a>
+                <a href="#">FGI y Protección de Inversores</a>
             </div>
-            <p class="copyright">© 2026 BolsaEspaña. Todos los derechos reservados. La información contenida en esta página no constituye asesoramiento financiero.</p>
+            <p class="copyright">© 2026 BolsaEspaña. Todos los derechos reservados. La información contenida en esta página no constituye asesoramiento financiero. Los datos del IBEX 35 son referenciales y no reflejan precios en tiempo real.</p>
         </div>
     </footer>
 
     <!-- 基础交互脚本 -->
     <script>
-        // 移动端菜单切换（简易版）
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
+        document.addEventListener('DOMContentLoaded', () => {
+            // 移动端菜单切换（优化后，通过类名切换）
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
 
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            // 移动端菜单布局适配
-            if (navLinks.style.display === 'flex') {
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '100%';
-                navLinks.style.left = '0';
-                navLinks.style.right = '0';
-                navLinks.style.background = '#1a2537';
-                navLinks.style.padding = '1rem';
-                navLinks.style.gap = '1rem';
-            }
-        });
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
 
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
+            // 移动端锚点点击关闭菜单
+            document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
             });
         });
     </script>
