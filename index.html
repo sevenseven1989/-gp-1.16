@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Acciones Españolas - Inversión en el Mercado Bursátil Español</title>
     <!-- Meta Pixel Code - 集成Facebook像素追踪 -->
     <script>
@@ -22,8 +25,9 @@
     /></noscript>
     <!-- End Meta Pixel Code -->
     <style>
-        /* 全局样式重置与基础设置 */
+        /* 移动端优先的CSS变量定义 */
         :root {
+            /* 基础颜色 */
             --color-primary: #1a2537;
             --color-accent: #f39c12;
             --color-accent-dark: #e67e22;
@@ -31,82 +35,73 @@
             --color-white: #ffffff;
             --color-text-main: #2c3e50;
             --color-text-secondary: #34495e;
+            
+            /* 移动端优先的尺寸变量 */
             --max-width: 1200px;
-            --padding-section-mobile: 2rem 0;
-            --padding-section-desktop: 5rem 0;
-            /* WhatsApp 按钮样式变量 */
+            --font-size-base: 16px;
+            --spacing-unit: 12px;
+            --padding-section: 2rem 0;
+            
+            /* WhatsApp 按钮样式变量 - 强化移动端触控 */
             --whatsapp-bg: #25d366;
             --whatsapp-border: #128c7e;
             --whatsapp-hover-bg: #1ebe5b;
             --whatsapp-text: #ffffff;
             --whatsapp-shadow: 0 0 0 5px rgba(37, 211, 102, 0.3);
             --whatsapp-hover-shadow: 0 0 0 8px rgba(37, 211, 102, 0.4);
+            
+            /* 移动端触控优化 */
+            --touch-target-min-size: 44px;
         }
-        
-        /* 响应式断点定义 - 标准化断点 */
-        @media (min-width: 360px) {
-            :root {
-                --font-size-base: 14px;
-                --spacing-unit: 8px;
-            }
-        }
-        
+
+        /* 响应式断点 - 仅针对大屏做微调 */
         @media (min-width: 768px) {
             :root {
-                --font-size-base: 16px;
-                --spacing-unit: 12px;
+                --font-size-base: 18px;
+                --spacing-unit: 16px;
+                --padding-section: 3rem 0;
             }
         }
         
         @media (min-width: 1024px) {
             :root {
-                --font-size-base: 16px;
-                --spacing-unit: 16px;
-            }
-        }
-        
-        @media (min-width: 1200px) {
-            :root {
-                --font-size-base: 18px;
-                --spacing-unit: 20px;
+                --padding-section: 5rem 0;
             }
         }
 
+        /* 全局重置 - 移动端优先 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
         }
 
         body {
-            line-height: 1.6;
+            line-height: 1.7; /* 移动端更舒适的行高 */
             color: var(--color-text-main);
             background-color: var(--color-light);
             scroll-behavior: smooth;
             font-size: var(--font-size-base);
-            /* PC端最大宽度限制，居中显示 */
-            max-width: 1920px;
-            margin: 0 auto;
+            max-width: 100%;
+            overflow-x: hidden;
         }
 
-        /* 导航栏样式 - 响应式优化 */
+        /* 导航栏 - 移动端优先设计 */
         header {
             background-color: var(--color-primary);
-            padding: 1rem 0;
+            padding: 1rem 5%;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
             transition: background-color 0.3s ease;
-            /* PC端导航栏宽度优化 */
             width: 100%;
         }
 
         .nav-container {
-            width: 90%;
-            max-width: var(--max-width);
-            margin: 0 auto;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -114,137 +109,176 @@
 
         .logo {
             color: var(--color-white);
-            font-size: clamp(1.2rem, 5vw, 1.5rem);
+            font-size: 1.4rem;
             font-weight: bold;
             text-decoration: none;
+            white-space: nowrap;
         }
 
         .logo span {
             color: var(--color-accent);
         }
 
-        /* 导航链接 - 响应式显示/隐藏 */
+        /* 导航链接 - 移动端默认隐藏 */
         .nav-links {
             display: none;
-            gap: clamp(1rem, 3vw, 2rem);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--color-primary);
+            padding: 1.5rem 5%;
+            flex-direction: column;
+            gap: 1.2rem;
+            z-index: 99;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
-        @media (min-width: 768px) {
-            .nav-links {
-                display: flex;
-            }
+        .nav-links.active {
+            display: flex;
         }
 
         .nav-links a {
             color: #ecf0f1;
             text-decoration: none;
-            font-size: clamp(0.85rem, 2vw, 0.95rem);
-            transition: color 0.3s ease;
+            font-size: 1rem;
+            transition: color 0.2s ease;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
         .nav-links a:hover {
             color: var(--color-accent);
         }
 
-        /* 移动端菜单按钮 */
+        /* 移动端菜单按钮 - 强化触控区域 */
         .mobile-menu-btn {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--color-white);
-            font-size: clamp(1.2rem, 5vw, 1.5rem);
+            font-size: 1.5rem;
+            width: var(--touch-target-min-size);
+            height: var(--touch-target-min-size);
             cursor: pointer;
         }
 
+        /* 大屏适配 - 仅在平板/桌面显示导航 */
         @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+                position: static;
+                background: transparent;
+                padding: 0;
+                flex-direction: row;
+                gap: 1.5rem;
+                border-top: none;
+            }
+            
+            .nav-links a {
+                border-bottom: none;
+                padding: 0;
+                font-size: 0.95rem;
+            }
+            
             .mobile-menu-btn {
                 display: none;
             }
         }
 
-        /* 英雄区样式 - 完全响应式 */
+        /* 英雄区 - 移动端优先设计 */
         .hero {
-            background: linear-gradient(rgba(26, 37, 55, 0.8), rgba(26, 37, 55, 0.9)), url('https://picsum.photos/1920/1080?category=business');
+            background: linear-gradient(rgba(26, 37, 55, 0.85), rgba(26, 37, 55, 0.95)), url('https://picsum.photos/1920/1080?category=business');
             background-size: cover;
             background-position: center;
             color: var(--color-white);
-            padding: clamp(3rem, 15vw, 6rem) 0;
+            padding: 4rem 5% 5rem;
             text-align: center;
-            /* PC端英雄区高度优化 */
-            min-height: 60vh;
+            min-height: 80vh;
             display: flex;
             align-items: center;
         }
 
         .hero-container {
-            width: 90%;
-            max-width: var(--max-width);
+            width: 100%;
+            max-width: 700px;
             margin: 0 auto;
-            padding: 0 var(--spacing-unit);
         }
 
         .hero h1 {
-            font-size: clamp(1.5rem, 7vw, 2.5rem);
-            margin-bottom: clamp(1rem, 3vw, 1.5rem);
-            line-height: 1.2;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+            font-weight: 700;
         }
 
         .hero p {
-            font-size: clamp(0.95rem, 3vw, 1.1rem);
-            margin-bottom: clamp(1.5rem, 4vw, 2rem);
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0.9;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
         }
 
-        /* WhatsApp 主按钮 - 全设备适配 */
+        /* 大屏下的英雄区优化 */
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* WhatsApp 主按钮 - 移动端触控优化 */
         .cta-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             white-space: nowrap;
-            padding: clamp(1rem, 4vw, 1.4rem) clamp(2rem, 6vw, 3rem);
+            padding: 1.2rem 2.5rem;
             margin: 0 auto;
-            width: auto;
-            min-width: clamp(220px, 80vw, 280px);
-            border-radius: clamp(8px, 2vw, 12px);
-            border: clamp(2px, 0.5vw, 3px) solid var(--whatsapp-border);
+            width: 90%;
+            min-height: var(--touch-target-min-size);
+            border-radius: 12px;
+            border: 3px solid var(--whatsapp-border);
             background-color: var(--whatsapp-bg);
             color: var(--whatsapp-text);
             box-shadow: var(--whatsapp-shadow);
             text-decoration: none;
             font-weight: 700;
-            font-size: clamp(0.95rem, 3vw, 1.15rem);
+            font-size: 1.1rem;
             transition: all 0.3s ease;
             position: relative;
             z-index: 1;
             overflow: visible;
+            touch-action: manipulation;
         }
 
         .cta-btn .fab.fa-whatsapp {
-            font-size: clamp(1.2rem, 4vw, 1.6rem);
-            margin-right: clamp(0.8rem, 2vw, 1rem);
+            font-size: 1.5rem;
+            margin-right: 1rem;
             line-height: 1;
         }
 
-        .cta-btn:hover {
+        .cta-btn:hover, .cta-btn:active {
             background-color: var(--whatsapp-hover-bg);
             color: var(--whatsapp-text);
             border-color: var(--whatsapp-border);
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: 0 10px 24px rgba(18, 140, 126, 0.4);
         }
 
-        /* 悬浮WhatsApp按钮样式 - 优化PC端位置 */
+        /* 悬浮WhatsApp按钮 - 移动端优先 */
         .floating-whatsapp {
             position: fixed;
-            right: clamp(1rem, 3vw, 2rem);
-            bottom: clamp(1rem, 3vw, 2rem);
+            right: 1rem;
+            bottom: 1rem;
             z-index: 999;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: clamp(60px, 10vw, 70px);
-            height: clamp(60px, 10vw, 70px);
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             background-color: var(--whatsapp-bg);
             color: var(--whatsapp-text);
@@ -253,18 +287,17 @@
             text-decoration: none;
             transition: all 0.3s ease;
             animation: pulse 2s infinite;
-            /* PC端增加hover反馈 */
-            cursor: pointer;
+            touch-action: manipulation;
         }
 
-        .floating-whatsapp:hover {
+        .floating-whatsapp:hover, .floating-whatsapp:active {
             background-color: var(--whatsapp-hover-bg);
-            transform: scale(1.1);
+            transform: scale(1.05);
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
         }
 
         .floating-whatsapp i {
-            font-size: clamp(1.8rem, 5vw, 2.2rem);
+            font-size: 2rem;
         }
 
         /* 脉冲动画效果 */
@@ -280,89 +313,94 @@
             }
         }
 
-        /* 移动端适配悬浮按钮 */
-        @media (max-width: 768px) {
-            .floating-whatsapp {
-                width: 55px;
-                height: 55px;
-                right: 15px;
-                bottom: 15px;
-            }
-            
-            .floating-whatsapp i {
-                font-size: 1.8rem;
-            }
-        }
-
-        /* PC端大屏优化 */
-        @media (min-width: 1440px) {
+        /* 大屏下的悬浮按钮优化 */
+        @media (min-width: 768px) {
             .floating-whatsapp {
                 width: 75px;
                 height: 75px;
-                right: 3rem;
-                bottom: 3rem;
+                right: 2rem;
+                bottom: 2rem;
             }
             
             .floating-whatsapp i {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
         }
 
-        /* 通用内容容器 - 响应式内边距 */
+        /* 通用内容容器 - 移动端优先 */
         .section {
-            padding: var(--padding-section-mobile);
+            padding: var(--padding-section);
             width: 90%;
             max-width: var(--max-width);
             margin: 0 auto;
         }
 
-        @media (min-width: 768px) {
-            .section {
-                padding: var(--padding-section-desktop);
-            }
-        }
-
         .section-title {
-            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-size: 1.6rem;
             text-align: center;
-            margin-bottom: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 2rem;
             color: var(--color-primary);
+            font-weight: 700;
         }
 
         .section-subtitle {
-            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            font-size: 1.1rem;
             text-align: center;
-            margin-bottom: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: 1.5rem;
             color: var(--color-accent-dark);
             font-weight: 600;
         }
 
-        /* 市场概览模块 - 响应式优化 */
+        /* 大屏下的标题优化 */
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* 市场概览模块 - 移动端优先 */
         .market-overview {
             background-color: var(--color-white);
-            border-radius: clamp(8px, 2vw, 10px);
+            border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            padding: clamp(1.5rem, 4vw, 2rem);
-            margin-bottom: clamp(2rem, 5vw, 4rem);
-            /* PC端增加内边距 */
-            @media (min-width: 1024px) {
-                padding: 2.5rem;
-            }
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .market-overview p {
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
         }
 
         .overview-grid {
             display: grid;
-            /* 优化PC端列数 */
-            grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 25%, 250px), 1fr));
-            gap: clamp(1.5rem, 3vw, 2rem);
-            margin-top: clamp(1.5rem, 3vw, 2rem);
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        /* 平板/桌面端网格优化 */
+        @media (min-width: 768px) {
+            .overview-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            @media (min-width: 1024px) {
+                .overview-grid {
+                    grid-template-columns: repeat(4, 1fr);
+                }
+            }
         }
 
         .overview-card {
-            padding: clamp(1rem, 3vw, 1.5rem);
-            border-left: clamp(3px, 0.5vw, 4px) solid var(--color-accent);
+            padding: 1.2rem;
+            border-left: 4px solid var(--color-accent);
             background-color: #fdfbf8;
-            border-radius: clamp(4px, 1vw, 5px);
+            border-radius: 5px;
             transition: box-shadow 0.3s ease;
         }
 
@@ -371,47 +409,60 @@
         }
 
         .overview-card h3 {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            margin-bottom: clamp(0.8rem, 2vw, 1rem);
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
             color: var(--color-accent-dark);
         }
 
         .overview-card p {
-            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            font-size: 0.9rem;
             color: var(--color-text-secondary);
+            margin-bottom: 0;
         }
 
-        /* IBEX 35 专属模块 - 响应式优化 */
+        /* IBEX 35 专属模块 - 移动端优先 */
         .ibex35-section {
             background-color: #fdfbf8;
-            border-radius: clamp(8px, 2vw, 10px);
+            border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            padding: clamp(1.5rem, 5vw, 3rem);
-            margin-bottom: clamp(2rem, 5vw, 4rem);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .ibex35-grid {
             display: grid;
-            /* PC端优化为4列 */
-            grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 25%, 300px), 1fr));
-            gap: clamp(1.5rem, 3vw, 2rem);
-            margin-top: clamp(1.5rem, 3vw, 2rem);
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        /* 平板/桌面端网格优化 */
+        @media (min-width: 768px) {
+            .ibex35-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            @media (min-width: 1024px) {
+                .ibex35-grid {
+                    grid-template-columns: repeat(4, 1fr);
+                }
+            }
         }
 
         .ibex35-facts {
-            padding: clamp(1rem, 3vw, 1.5rem);
+            padding: 1.2rem;
             background-color: var(--color-white);
-            border-radius: clamp(6px, 1.5vw, 8px);
+            border-radius: 8px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.03);
         }
 
         .ibex35-facts h3 {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            margin-bottom: clamp(0.8rem, 2vw, 1rem);
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
             color: var(--color-primary);
             display: flex;
             align-items: center;
-            gap: clamp(0.4rem, 1vw, 0.5rem);
+            gap: 0.5rem;
         }
 
         .ibex35-facts h3 i {
@@ -420,30 +471,48 @@
 
         .ibex35-facts ul {
             list-style-type: disc;
-            margin-left: clamp(1rem, 3vw, 1.5rem);
+            margin-left: 1.5rem;
             color: var(--color-text-secondary);
-            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            font-size: 0.9rem;
         }
 
         .ibex35-facts ul li {
-            margin-bottom: clamp(0.5rem, 1.5vw, 0.7rem);
+            margin-bottom: 0.7rem;
         }
 
-        /* 热门股票模块 - 响应式网格 */
+        /* 热门股票模块 - 移动端优先 */
         .stocks-grid {
             display: grid;
-            /* PC端优化列数 */
-            grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 16.66%, 300px), 1fr));
-            gap: clamp(1.5rem, 4vw, 2.5rem);
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        /* 平板/桌面端网格优化 */
+        @media (min-width: 768px) {
+            .stocks-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            @media (min-width: 1024px) {
+                .stocks-grid {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+                
+                @media (min-width: 1200px) {
+                    .stocks-grid {
+                        grid-template-columns: repeat(6, 1fr);
+                    }
+                }
+            }
         }
 
         .stock-card {
             background-color: var(--color-white);
-            border-radius: clamp(8px, 2vw, 10px);
+            border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            /* PC端卡片hover效果增强 */
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -456,41 +525,37 @@
 
         .stock-img {
             width: 100%;
-            height: clamp(120px, 30vw, 180px);
+            height: 180px;
             object-fit: cover;
-            /* PC端图片高度固定 */
-            @media (min-width: 768px) {
-                height: 180px;
-            }
         }
 
         .stock-content {
-            padding: clamp(1rem, 3vw, 1.5rem);
+            padding: 1.2rem;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
 
         .stock-content h3 {
-            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-            margin-bottom: clamp(0.4rem, 1vw, 0.5rem);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
             color: var(--color-primary);
         }
 
         .stock-ticker {
-            font-size: clamp(0.75rem, 2vw, 0.85rem);
+            font-size: 0.85rem;
             color: #7f8c8d;
-            margin-bottom: clamp(0.8rem, 2vw, 1rem);
+            margin-bottom: 1rem;
             display: inline-block;
-            padding: clamp(0.1rem, 0.5vw, 0.2rem) clamp(0.4rem, 1vw, 0.5rem);
+            padding: 0.2rem 0.5rem;
             background-color: #f1f2f6;
-            border-radius: clamp(2px, 0.5vw, 3px);
+            border-radius: 3px;
         }
 
         .stock-price {
-            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: clamp(0.8rem, 2vw, 1rem);
+            margin-bottom: 1rem;
         }
 
         .price-up {
@@ -502,34 +567,46 @@
         }
 
         .stock-content p {
-            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            font-size: 0.9rem;
             color: var(--color-text-secondary);
-            margin-bottom: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: 1rem;
             flex: 1;
         }
 
-        /* 交易规则与投资贴士模块 */
+        /* 交易规则与投资贴士模块 - 移动端优先 */
         .trading-tips {
             background-color: var(--color-white);
-            border-radius: clamp(8px, 2vw, 10px);
+            border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            padding: clamp(1.5rem, 5vw, 3rem);
-            margin-bottom: clamp(2rem, 5vw, 4rem);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .tips-grid {
             display: grid;
-            /* PC端优化为3列 */
-            grid-template-columns: repeat(auto-fit, minmax(clamp(240px, 33.33%, 280px), 1fr));
-            gap: clamp(1.5rem, 3vw, 2rem);
-            margin-top: clamp(1.5rem, 3vw, 2rem);
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        /* 平板/桌面端网格优化 */
+        @media (min-width: 768px) {
+            .tips-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            @media (min-width: 1024px) {
+                .tips-grid {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
         }
 
         .tip-card {
-            padding: clamp(1.2rem, 4vw, 1.8rem);
-            border-radius: clamp(6px, 1.5vw, 8px);
+            padding: 1.5rem;
+            border-radius: 8px;
             background-color: #fdfbf8;
-            border-top: clamp(3px, 0.5vw, 4px) solid var(--color-accent-dark);
+            border-top: 4px solid var(--color-accent-dark);
             transition: box-shadow 0.3s ease;
         }
 
@@ -538,47 +615,65 @@
         }
 
         .tip-card h3 {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            margin-bottom: clamp(0.8rem, 2vw, 1rem);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
             color: var(--color-primary);
         }
 
         .tip-card p {
-            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            font-size: 0.9rem;
             color: var(--color-text-secondary);
             line-height: 1.7;
         }
 
-        /* 投资优势模块 */
+        /* 投资优势模块 - 移动端优先 */
         .advantages {
             background-color: var(--color-primary);
             color: var(--color-white);
             margin: 0;
             width: 100%;
-            padding: clamp(2rem, 10vw, 5rem) 0;
+            padding: 3rem 5%;
         }
 
         .advantages .section-title {
             color: var(--color-white);
+            margin-bottom: 2rem;
         }
 
         .advantages-grid {
             display: grid;
-            /* PC端优化为6列 */
-            grid-template-columns: repeat(auto-fit, minmax(clamp(240px, 16.66%, 280px), 1fr));
-            gap: clamp(1.5rem, 3vw, 2rem);
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
             width: 90%;
             max-width: var(--max-width);
             margin: 0 auto;
         }
 
+        /* 平板/桌面端网格优化 */
+        @media (min-width: 768px) {
+            .advantages-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            @media (min-width: 1024px) {
+                .advantages-grid {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+                
+                @media (min-width: 1200px) {
+                    .advantages-grid {
+                        grid-template-columns: repeat(6, 1fr);
+                    }
+                }
+            }
+        }
+
         .advantage-card {
-            padding: clamp(1.5rem, 4vw, 2rem);
+            padding: 2rem 1.5rem;
             background-color: rgba(255, 255, 255, 0.05);
-            border-radius: clamp(8px, 2vw, 10px);
+            border-radius: 10px;
             text-align: center;
             transition: background-color 0.3s ease;
-            /* PC端卡片高度一致 */
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -590,32 +685,34 @@
         }
 
         .advantage-card i {
-            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-size: 2.2rem;
             color: var(--color-accent);
-            margin-bottom: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: 1.2rem;
         }
 
         .advantage-card h3 {
-            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-            margin-bottom: clamp(0.8rem, 2vw, 1rem);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
         }
 
         .advantage-card p {
-            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            font-size: 0.9rem;
             opacity: 0.8;
+            line-height: 1.6;
         }
 
-        /* 页脚样式 - 响应式优化 */
+        /* 页脚 - 移动端优先 */
         footer {
             background-color: var(--color-primary);
             color: #ecf0f1;
-            padding: clamp(2rem, 5vw, 3rem) 0;
+            padding: 2rem 5%;
             text-align: center;
             width: 100%;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
         .footer-container {
-            width: 90%;
+            width: 100%;
             max-width: var(--max-width);
             margin: 0 auto;
         }
@@ -624,15 +721,16 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: clamp(1rem, 2vw, 1.5rem);
-            margin: clamp(1rem, 3vw, 1.5rem) 0;
+            gap: 1rem;
+            margin: 1.5rem 0;
         }
 
         .footer-links a {
             color: #bdc3c7;
             text-decoration: none;
-            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            font-size: 0.9rem;
             transition: color 0.3s ease;
+            padding: 0.5rem 0;
         }
 
         .footer-links a:hover {
@@ -640,29 +738,15 @@
         }
 
         .copyright {
-            font-size: clamp(0.75rem, 2vw, 0.85rem);
+            font-size: 0.85rem;
             opacity: 0.7;
-            margin-top: clamp(1.5rem, 3vw, 2rem);
-            padding: 0 var(--spacing-unit);
-        }
-
-        /* 移动端菜单激活样式 */
-        .nav-links.active {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: var(--color-primary);
-            padding: clamp(1rem, 3vw, 1.5rem);
-            gap: clamp(0.8rem, 2vw, 1rem);
-            z-index: 99;
+            margin-top: 2rem;
+            line-height: 1.6;
         }
 
         /* 辅助样式 */
         .mt-2 {
-            margin-top: clamp(0.8rem, 2vw, 1rem) !important;
+            margin-top: 1rem !important;
         }
 
         /* 修复滚动锚点定位问题 */
@@ -670,7 +754,12 @@
             scroll-margin-top: 80px;
         }
 
-        /* PC端滚动条美化 */
+        /* 移动端滚动优化 */
+        html {
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* 仅在大屏美化滚动条 */
         @media (min-width: 768px) {
             ::-webkit-scrollbar {
                 width: 8px;
@@ -695,7 +784,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- 悬浮WhatsApp按钮 -->
+    <!-- 悬浮WhatsApp按钮 - 移动端触控优化 -->
     <a href="https://sdlink.cc/9zoRbp" target="_blank" class="floating-whatsapp" onclick="trackContactEvent()">
         <i class="fab fa-whatsapp"></i>
     </a>
@@ -965,21 +1054,33 @@
         </div>
     </footer>
 
-    <!-- 交互脚本 -->
+    <!-- 交互脚本 - 移动端优先优化 -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 移动端菜单切换
+            // 移动端菜单切换 - 优化触控响应
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
             const navLinks = document.querySelector('.nav-links');
 
             mobileMenuBtn.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
+                // 切换菜单图标
+                const icon = mobileMenuBtn.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
             });
 
             // 移动端锚点点击关闭菜单
             document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', () => {
                     navLinks.classList.remove('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
                 });
             });
 
@@ -993,7 +1094,7 @@
                 }
             });
 
-            // 平滑滚动优化（兼容所有浏览器）
+            // 平滑滚动优化（兼容移动端）
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -1010,6 +1111,17 @@
                             behavior: 'smooth'
                         });
                     }
+                });
+            });
+
+            // 移动端触摸反馈优化
+            const touchElements = document.querySelectorAll('.cta-btn, .floating-whatsapp, .nav-links a');
+            touchElements.forEach(el => {
+                el.addEventListener('touchstart', () => {
+                    el.style.opacity = '0.9';
+                });
+                el.addEventListener('touchend', () => {
+                    el.style.opacity = '1';
                 });
             });
         });
