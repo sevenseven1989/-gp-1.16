@@ -43,7 +43,7 @@
             --whatsapp-hover-shadow: 0 0 0 8px rgba(37, 211, 102, 0.4);
         }
         
-        /* 响应式断点定义 */
+        /* 响应式断点定义 - 标准化断点 */
         @media (min-width: 360px) {
             :root {
                 --font-size-base: 14px;
@@ -85,6 +85,9 @@
             background-color: var(--color-light);
             scroll-behavior: smooth;
             font-size: var(--font-size-base);
+            /* PC端最大宽度限制，居中显示 */
+            max-width: 1920px;
+            margin: 0 auto;
         }
 
         /* 导航栏样式 - 响应式优化 */
@@ -96,6 +99,8 @@
             z-index: 100;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             transition: background-color 0.3s ease;
+            /* PC端导航栏宽度优化 */
+            width: 100%;
         }
 
         .nav-container {
@@ -163,6 +168,10 @@
             color: var(--color-white);
             padding: clamp(3rem, 15vw, 6rem) 0;
             text-align: center;
+            /* PC端英雄区高度优化 */
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
         }
 
         .hero-container {
@@ -225,7 +234,7 @@
             box-shadow: 0 10px 24px rgba(18, 140, 126, 0.4);
         }
 
-        /* 悬浮WhatsApp按钮样式 */
+        /* 悬浮WhatsApp按钮样式 - 优化PC端位置 */
         .floating-whatsapp {
             position: fixed;
             right: clamp(1rem, 3vw, 2rem);
@@ -244,6 +253,8 @@
             text-decoration: none;
             transition: all 0.3s ease;
             animation: pulse 2s infinite;
+            /* PC端增加hover反馈 */
+            cursor: pointer;
         }
 
         .floating-whatsapp:hover {
@@ -283,6 +294,20 @@
             }
         }
 
+        /* PC端大屏优化 */
+        @media (min-width: 1440px) {
+            .floating-whatsapp {
+                width: 75px;
+                height: 75px;
+                right: 3rem;
+                bottom: 3rem;
+            }
+            
+            .floating-whatsapp i {
+                font-size: 2.5rem;
+            }
+        }
+
         /* 通用内容容器 - 响应式内边距 */
         .section {
             padding: var(--padding-section-mobile);
@@ -319,11 +344,16 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             padding: clamp(1.5rem, 4vw, 2rem);
             margin-bottom: clamp(2rem, 5vw, 4rem);
+            /* PC端增加内边距 */
+            @media (min-width: 1024px) {
+                padding: 2.5rem;
+            }
         }
 
         .overview-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 100%, 250px), 1fr));
+            /* 优化PC端列数 */
+            grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 25%, 250px), 1fr));
             gap: clamp(1.5rem, 3vw, 2rem);
             margin-top: clamp(1.5rem, 3vw, 2rem);
         }
@@ -362,7 +392,8 @@
 
         .ibex35-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 100%, 300px), 1fr));
+            /* PC端优化为4列 */
+            grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 25%, 300px), 1fr));
             gap: clamp(1.5rem, 3vw, 2rem);
             margin-top: clamp(1.5rem, 3vw, 2rem);
         }
@@ -401,7 +432,8 @@
         /* 热门股票模块 - 响应式网格 */
         .stocks-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 100%, 300px), 1fr));
+            /* PC端优化列数 */
+            grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 16.66%, 300px), 1fr));
             gap: clamp(1.5rem, 4vw, 2.5rem);
         }
 
@@ -411,6 +443,10 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* PC端卡片hover效果增强 */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .stock-card:hover {
@@ -422,10 +458,17 @@
             width: 100%;
             height: clamp(120px, 30vw, 180px);
             object-fit: cover;
+            /* PC端图片高度固定 */
+            @media (min-width: 768px) {
+                height: 180px;
+            }
         }
 
         .stock-content {
             padding: clamp(1rem, 3vw, 1.5rem);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .stock-content h3 {
@@ -462,6 +505,7 @@
             font-size: clamp(0.85rem, 2vw, 0.95rem);
             color: var(--color-text-secondary);
             margin-bottom: clamp(1rem, 3vw, 1.5rem);
+            flex: 1;
         }
 
         /* 交易规则与投资贴士模块 */
@@ -475,7 +519,8 @@
 
         .tips-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(clamp(240px, 100%, 280px), 1fr));
+            /* PC端优化为3列 */
+            grid-template-columns: repeat(auto-fit, minmax(clamp(240px, 33.33%, 280px), 1fr));
             gap: clamp(1.5rem, 3vw, 2rem);
             margin-top: clamp(1.5rem, 3vw, 2rem);
         }
@@ -519,7 +564,8 @@
 
         .advantages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(clamp(240px, 100%, 280px), 1fr));
+            /* PC端优化为6列 */
+            grid-template-columns: repeat(auto-fit, minmax(clamp(240px, 16.66%, 280px), 1fr));
             gap: clamp(1.5rem, 3vw, 2rem);
             width: 90%;
             max-width: var(--max-width);
@@ -532,6 +578,11 @@
             border-radius: clamp(8px, 2vw, 10px);
             text-align: center;
             transition: background-color 0.3s ease;
+            /* PC端卡片高度一致 */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .advantage-card:hover {
@@ -560,6 +611,7 @@
             color: #ecf0f1;
             padding: clamp(2rem, 5vw, 3rem) 0;
             text-align: center;
+            width: 100%;
         }
 
         .footer-container {
@@ -611,6 +663,32 @@
         /* 辅助样式 */
         .mt-2 {
             margin-top: clamp(0.8rem, 2vw, 1rem) !important;
+        }
+
+        /* 修复滚动锚点定位问题 */
+        :target {
+            scroll-margin-top: 80px;
+        }
+
+        /* PC端滚动条美化 */
+        @media (min-width: 768px) {
+            ::-webkit-scrollbar {
+                width: 8px;
+                height: 8px;
+            }
+            
+            ::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+            
+            ::-webkit-scrollbar-thumb {
+                background: var(--color-accent);
+                border-radius: 4px;
+            }
+            
+            ::-webkit-scrollbar-thumb:hover {
+                background: var(--color-accent-dark);
+            }
         }
     </style>
     <!-- 引入图标库 -->
@@ -914,12 +992,37 @@
                     header.style.backgroundColor = 'var(--color-primary)';
                 }
             });
+
+            // 平滑滚动优化（兼容所有浏览器）
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
         });
 
         // Facebook Contact 事件追踪
         function trackContactEvent() {
-            fbq('track', 'Contact');
-            console.log('Facebook Contact 事件已触发');
+            // 增加容错处理，避免fbq未加载时报错
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Contact');
+                console.log('Facebook Contact 事件已触发');
+            } else {
+                console.log('Facebook pixel 未加载，Contact 事件未触发');
+            }
         }
     </script>
 </body>
