@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Acciones Españolas - Inversión en el Mercado Bursátil Español</title>
     <!-- Meta Pixel Code - 集成Facebook像素追踪 -->
     <script>
@@ -32,15 +32,46 @@
             --color-text-main: #2c3e50;
             --color-text-secondary: #34495e;
             --max-width: 1200px;
-            --padding-section: 5rem 0;
-            /* WhatsApp 按钮样式变量（默认高亮绿核心配置） */
-            --whatsapp-bg: #25d366; /* 默认实心高亮绿（WhatsApp 官方主色） */
-            --whatsapp-border: #128c7e; /* 深绿边框，增强层次感 */
-            --whatsapp-hover-bg: #1ebe5b; /* hover 稍暗绿，提升交互反馈 */
-            --whatsapp-text: #ffffff; /* 白色文字，强烈对比清晰可读 */
-            --whatsapp-shadow: 0 0 0 5px rgba(37, 211, 102, 0.3); /* 扩散阴影 */
-            --whatsapp-hover-shadow: 0 0 0 8px rgba(37, 211, 102, 0.4); /* hover 阴影放大 */
+            --padding-section-mobile: 2rem 0;
+            --padding-section-desktop: 5rem 0;
+            /* WhatsApp 按钮样式变量 */
+            --whatsapp-bg: #25d366;
+            --whatsapp-border: #128c7e;
+            --whatsapp-hover-bg: #1ebe5b;
+            --whatsapp-text: #ffffff;
+            --whatsapp-shadow: 0 0 0 5px rgba(37, 211, 102, 0.3);
+            --whatsapp-hover-shadow: 0 0 0 8px rgba(37, 211, 102, 0.4);
         }
+        
+        /* 响应式断点定义 */
+        @media (min-width: 360px) {
+            :root {
+                --font-size-base: 14px;
+                --spacing-unit: 8px;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            :root {
+                --font-size-base: 16px;
+                --spacing-unit: 12px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            :root {
+                --font-size-base: 16px;
+                --spacing-unit: 16px;
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            :root {
+                --font-size-base: 18px;
+                --spacing-unit: 20px;
+            }
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -53,9 +84,10 @@
             color: var(--color-text-main);
             background-color: var(--color-light);
             scroll-behavior: smooth;
+            font-size: var(--font-size-base);
         }
 
-        /* 导航栏样式 */
+        /* 导航栏样式 - 响应式优化 */
         header {
             background-color: var(--color-primary);
             padding: 1rem 0;
@@ -77,7 +109,7 @@
 
         .logo {
             color: var(--color-white);
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 5vw, 1.5rem);
             font-weight: bold;
             text-decoration: none;
         }
@@ -86,15 +118,22 @@
             color: var(--color-accent);
         }
 
+        /* 导航链接 - 响应式显示/隐藏 */
         .nav-links {
-            display: flex;
-            gap: 2rem;
+            display: none;
+            gap: clamp(1rem, 3vw, 2rem);
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
         }
 
         .nav-links a {
             color: #ecf0f1;
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
             transition: color 0.3s ease;
         }
 
@@ -102,20 +141,27 @@
             color: var(--color-accent);
         }
 
+        /* 移动端菜单按钮 */
         .mobile-menu-btn {
-            display: none;
+            display: block;
             color: var(--color-white);
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 5vw, 1.5rem);
             cursor: pointer;
         }
 
-        /* 英雄区样式 */
+        @media (min-width: 768px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+
+        /* 英雄区样式 - 完全响应式 */
         .hero {
             background: linear-gradient(rgba(26, 37, 55, 0.8), rgba(26, 37, 55, 0.9)), url('https://picsum.photos/1920/1080?category=business');
             background-size: cover;
             background-position: center;
             color: var(--color-white);
-            padding: 6rem 0;
+            padding: clamp(3rem, 15vw, 6rem) 0;
             text-align: center;
         }
 
@@ -123,54 +169,51 @@
             width: 90%;
             max-width: var(--max-width);
             margin: 0 auto;
+            padding: 0 var(--spacing-unit);
         }
 
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            font-size: clamp(1.5rem, 7vw, 2.5rem);
+            margin-bottom: clamp(1rem, 3vw, 1.5rem);
             line-height: 1.2;
         }
 
         .hero p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
+            font-size: clamp(0.95rem, 3vw, 1.1rem);
+            margin-bottom: clamp(1.5rem, 4vw, 2rem);
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
             opacity: 0.9;
         }
 
-        /* 英雄区 WhatsApp 主按钮（仅保留此按钮 + 完整背景框 + 突出图标 + 文字同行） */
+        /* WhatsApp 主按钮 - 全设备适配 */
         .cta-btn {
-            /* 核心：调整背景框尺寸，确保完整无截断、适配内容 */
             display: inline-flex;
             align-items: center;
             justify-content: center;
             white-space: nowrap;
-            padding: 1.4rem 3rem; /* 优化内边距，让背景框完整包裹图标+文字，不拥挤 */
-            margin: 0 auto; /* 水平居中，避免边缘截断 */
-            width: auto; /* 自动适配内容宽度，不强制固定尺寸，确保背景框完整 */
-            min-width: 280px; /* 最小宽度，保证背景框美观，不塌陷 */
-            border-radius: 12px; /* 适度圆角，背景框边角完整圆润 */
-            /* 高亮绿基础样式 */
-            border: 3px solid var(--whatsapp-border);
+            padding: clamp(1rem, 4vw, 1.4rem) clamp(2rem, 6vw, 3rem);
+            margin: 0 auto;
+            width: auto;
+            min-width: clamp(220px, 80vw, 280px);
+            border-radius: clamp(8px, 2vw, 12px);
+            border: clamp(2px, 0.5vw, 3px) solid var(--whatsapp-border);
             background-color: var(--whatsapp-bg);
             color: var(--whatsapp-text);
             box-shadow: var(--whatsapp-shadow);
-            /* 文字与交互样式 */
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.15rem;
+            font-size: clamp(0.95rem, 3vw, 1.15rem);
             transition: all 0.3s ease;
             position: relative;
             z-index: 1;
-            overflow: visible; /* 确保阴影不被截断，背景框视觉完整 */
+            overflow: visible;
         }
 
-        /* 突出 WhatsApp 电话图标 */
         .cta-btn .fab.fa-whatsapp {
-            font-size: 1.6rem; /* 放大图标，强化视觉焦点 */
-            margin-right: 1rem; /* 合理间距，确保背景框能完整包裹 */
+            font-size: clamp(1.2rem, 4vw, 1.6rem);
+            margin-right: clamp(0.8rem, 2vw, 1rem);
             line-height: 1;
         }
 
@@ -180,55 +223,58 @@
             border-color: var(--whatsapp-border);
             transform: translateY(-5px);
             box-shadow: 0 10px 24px rgba(18, 140, 126, 0.4);
-            /* hover 时背景框仍保持完整，无变形 */
-            padding: 1.4rem 3rem;
-            border-radius: 12px;
         }
 
-        /* 通用内容容器样式（保留基础，移除其他按钮相关样式） */
+        /* 通用内容容器 - 响应式内边距 */
         .section {
-            padding: var(--padding-section);
+            padding: var(--padding-section-mobile);
             width: 90%;
             max-width: var(--max-width);
             margin: 0 auto;
         }
 
+        @media (min-width: 768px) {
+            .section {
+                padding: var(--padding-section-desktop);
+            }
+        }
+
         .section-title {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 5vw, 2rem);
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: clamp(2rem, 5vw, 3rem);
             color: var(--color-primary);
         }
 
         .section-subtitle {
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
             text-align: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: clamp(1rem, 3vw, 1.5rem);
             color: var(--color-accent-dark);
             font-weight: 600;
         }
 
-        /* 市场概览模块（仅保留结构，移除内部按钮） */
+        /* 市场概览模块 - 响应式优化 */
         .market-overview {
             background-color: var(--color-white);
-            border-radius: 10px;
+            border-radius: clamp(8px, 2vw, 10px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            padding: 2rem;
-            margin-bottom: 4rem;
+            padding: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: clamp(2rem, 5vw, 4rem);
         }
 
         .overview-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 100%, 250px), 1fr));
+            gap: clamp(1.5rem, 3vw, 2rem);
+            margin-top: clamp(1.5rem, 3vw, 2rem);
         }
 
         .overview-card {
-            padding: 1.5rem;
-            border-left: 4px solid var(--color-accent);
+            padding: clamp(1rem, 3vw, 1.5rem);
+            border-left: clamp(3px, 0.5vw, 4px) solid var(--color-accent);
             background-color: #fdfbf8;
-            border-radius: 5px;
+            border-radius: clamp(4px, 1vw, 5px);
             transition: box-shadow 0.3s ease;
         }
 
@@ -237,46 +283,46 @@
         }
 
         .overview-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            margin-bottom: clamp(0.8rem, 2vw, 1rem);
             color: var(--color-accent-dark);
         }
 
         .overview-card p {
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
             color: var(--color-text-secondary);
         }
 
-        /* IBEX 35 专属模块（仅保留结构，移除内部按钮） */
+        /* IBEX 35 专属模块 - 响应式优化 */
         .ibex35-section {
             background-color: #fdfbf8;
-            border-radius: 10px;
+            border-radius: clamp(8px, 2vw, 10px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            padding: 3rem;
-            margin-bottom: 4rem;
+            padding: clamp(1.5rem, 5vw, 3rem);
+            margin-bottom: clamp(2rem, 5vw, 4rem);
         }
 
         .ibex35-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 100%, 300px), 1fr));
+            gap: clamp(1.5rem, 3vw, 2rem);
+            margin-top: clamp(1.5rem, 3vw, 2rem);
         }
 
         .ibex35-facts {
-            padding: 1.5rem;
+            padding: clamp(1rem, 3vw, 1.5rem);
             background-color: var(--color-white);
-            border-radius: 8px;
+            border-radius: clamp(6px, 1.5vw, 8px);
             box-shadow: 0 2px 6px rgba(0,0,0,0.03);
         }
 
         .ibex35-facts h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            margin-bottom: clamp(0.8rem, 2vw, 1rem);
             color: var(--color-primary);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: clamp(0.4rem, 1vw, 0.5rem);
         }
 
         .ibex35-facts h3 i {
@@ -285,25 +331,25 @@
 
         .ibex35-facts ul {
             list-style-type: disc;
-            margin-left: 1.5rem;
+            margin-left: clamp(1rem, 3vw, 1.5rem);
             color: var(--color-text-secondary);
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
         }
 
         .ibex35-facts ul li {
-            margin-bottom: 0.7rem;
+            margin-bottom: clamp(0.5rem, 1.5vw, 0.7rem);
         }
 
-        /* 热门股票模块（移除所有内部WhatsApp按钮） */
+        /* 热门股票模块 - 响应式网格 */
         .stocks-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 100%, 300px), 1fr));
+            gap: clamp(1.5rem, 4vw, 2.5rem);
         }
 
         .stock-card {
             background-color: var(--color-white);
-            border-radius: 10px;
+            border-radius: clamp(8px, 2vw, 10px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -316,34 +362,34 @@
 
         .stock-img {
             width: 100%;
-            height: 180px;
+            height: clamp(120px, 30vw, 180px);
             object-fit: cover;
         }
 
         .stock-content {
-            padding: 1.5rem;
+            padding: clamp(1rem, 3vw, 1.5rem);
         }
 
         .stock-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            margin-bottom: clamp(0.4rem, 1vw, 0.5rem);
             color: var(--color-primary);
         }
 
         .stock-ticker {
-            font-size: 0.85rem;
+            font-size: clamp(0.75rem, 2vw, 0.85rem);
             color: #7f8c8d;
-            margin-bottom: 1rem;
+            margin-bottom: clamp(0.8rem, 2vw, 1rem);
             display: inline-block;
-            padding: 0.2rem 0.5rem;
+            padding: clamp(0.1rem, 0.5vw, 0.2rem) clamp(0.4rem, 1vw, 0.5rem);
             background-color: #f1f2f6;
-            border-radius: 3px;
+            border-radius: clamp(2px, 0.5vw, 3px);
         }
 
         .stock-price {
-            font-size: 1.1rem;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: clamp(0.8rem, 2vw, 1rem);
         }
 
         .price-up {
@@ -355,32 +401,32 @@
         }
 
         .stock-content p {
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
             color: var(--color-text-secondary);
-            margin-bottom: 1.5rem;
+            margin-bottom: clamp(1rem, 3vw, 1.5rem);
         }
 
-        /* 交易规则与投资贴士模块（仅保留结构，无按钮） */
+        /* 交易规则与投资贴士模块 */
         .trading-tips {
             background-color: var(--color-white);
-            border-radius: 10px;
+            border-radius: clamp(8px, 2vw, 10px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            padding: 3rem;
-            margin-bottom: 4rem;
+            padding: clamp(1.5rem, 5vw, 3rem);
+            margin-bottom: clamp(2rem, 5vw, 4rem);
         }
 
         .tips-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(240px, 100%, 280px), 1fr));
+            gap: clamp(1.5rem, 3vw, 2rem);
+            margin-top: clamp(1.5rem, 3vw, 2rem);
         }
 
         .tip-card {
-            padding: 1.8rem;
-            border-radius: 8px;
+            padding: clamp(1.2rem, 4vw, 1.8rem);
+            border-radius: clamp(6px, 1.5vw, 8px);
             background-color: #fdfbf8;
-            border-top: 4px solid var(--color-accent-dark);
+            border-top: clamp(3px, 0.5vw, 4px) solid var(--color-accent-dark);
             transition: box-shadow 0.3s ease;
         }
 
@@ -389,24 +435,24 @@
         }
 
         .tip-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            margin-bottom: clamp(0.8rem, 2vw, 1rem);
             color: var(--color-primary);
         }
 
         .tip-card p {
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
             color: var(--color-text-secondary);
             line-height: 1.7;
         }
 
-        /* 投资优势模块（仅保留结构，无按钮） */
+        /* 投资优势模块 */
         .advantages {
             background-color: var(--color-primary);
             color: var(--color-white);
             margin: 0;
             width: 100%;
-            padding: 5rem 0;
+            padding: clamp(2rem, 10vw, 5rem) 0;
         }
 
         .advantages .section-title {
@@ -415,17 +461,17 @@
 
         .advantages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(240px, 100%, 280px), 1fr));
+            gap: clamp(1.5rem, 3vw, 2rem);
             width: 90%;
             max-width: var(--max-width);
             margin: 0 auto;
         }
 
         .advantage-card {
-            padding: 2rem;
+            padding: clamp(1.5rem, 4vw, 2rem);
             background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
+            border-radius: clamp(8px, 2vw, 10px);
             text-align: center;
             transition: background-color 0.3s ease;
         }
@@ -435,26 +481,26 @@
         }
 
         .advantage-card i {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
             color: var(--color-accent);
-            margin-bottom: 1.5rem;
+            margin-bottom: clamp(1rem, 3vw, 1.5rem);
         }
 
         .advantage-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            margin-bottom: clamp(0.8rem, 2vw, 1rem);
         }
 
         .advantage-card p {
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
             opacity: 0.8;
         }
 
-        /* 页脚样式 */
+        /* 页脚样式 - 响应式优化 */
         footer {
             background-color: var(--color-primary);
             color: #ecf0f1;
-            padding: 3rem 0;
+            padding: clamp(2rem, 5vw, 3rem) 0;
             text-align: center;
         }
 
@@ -466,14 +512,16 @@
 
         .footer-links {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
+            gap: clamp(1rem, 2vw, 1.5rem);
+            margin: clamp(1rem, 3vw, 1.5rem) 0;
         }
 
         .footer-links a {
             color: #bdc3c7;
             text-decoration: none;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             transition: color 0.3s ease;
         }
 
@@ -482,69 +530,36 @@
         }
 
         .copyright {
-            font-size: 0.85rem;
+            font-size: clamp(0.75rem, 2vw, 0.85rem);
             opacity: 0.7;
-            margin-top: 2rem;
+            margin-top: clamp(1.5rem, 3vw, 2rem);
+            padding: 0 var(--spacing-unit);
         }
 
-        /* 响应式适配 - 移动端（背景框完整保留） */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
+        /* 移动端菜单激活样式 */
+        .nav-links.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--color-primary);
+            padding: clamp(1rem, 3vw, 1.5rem);
+            gap: clamp(0.8rem, 2vw, 1rem);
+            z-index: 99;
+        }
 
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .section-title {
-                font-size: 1.7rem;
-            }
-
-            .section-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .ibex35-section, .trading-tips {
-                padding: 1.5rem;
-            }
-
-            /* 移动端 WhatsApp 主按钮背景框适配，保持完整无截断 */
-            .cta-btn {
-                padding: 1.2rem 2.4rem;
-                font-size: 1rem;
-                border-width: 2px;
-                min-width: 240px; /* 移动端最小宽度，保证背景框完整 */
-                border-radius: 12px; /* 圆角保留，背景框边角完整 */
-            }
-
-            .cta-btn .fab.fa-whatsapp {
-                font-size: 1.4rem;
-            }
-
-            /* 移动端菜单激活样式 */
-            .nav-links.active {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--color-primary);
-                padding: 1rem;
-                gap: 1rem;
-            }
+        /* 辅助样式 */
+        .mt-2 {
+            margin-top: clamp(0.8rem, 2vw, 1rem) !important;
         }
     </style>
     <!-- 引入图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- 导航栏：修改"Ventajas de Inversión"为"Contacta por WhatsApp" -->
+    <!-- 导航栏 -->
     <header>
         <div class="nav-container">
             <a href="#" class="logo">Bolsa<span>España</span></a>
@@ -553,7 +568,7 @@
                 <a href="#ibex35">IBEX 35</a>
                 <a href="#stocks">Acciones Populares</a>
                 <a href="#trading">Reglas & Consejos</a>
-                <a href="#advantages">Contacta por WhatsApp</a> <!-- 核心修改：导航栏文字替换 -->
+                <a href="#advantages">Contacta por WhatsApp</a>
             </div>
             <div class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
@@ -561,26 +576,25 @@
         </div>
     </header>
 
-    <!-- 英雄区：仅保留此按钮，替换WhatsApp链接为 https://sdlink.cc/9zoRbp -->
+    <!-- 英雄区 -->
     <section class="hero">
         <div class="hero-container">
             <h1>Invierte en las Mejores Acciones del Mercado Bursátil Español</h1>
             <p>Accede a análisis expertos, datos en tiempo real y oportunidades de inversión en la Bolsa de Madrid y más mercados españoles. Conoce el IBEX 35, las empresas líderes y las reglas para invertir con éxito.</p>
-            <!-- 核心修改：替换href属性为目标链接 https://sdlink.cc/9zoRbp -->
             <a href="https://sdlink.cc/9zoRbp" target="_blank" class="cta-btn" onclick="trackContactEvent()">
                 <i class="fab fa-whatsapp"></i> Contacta conmigo por WhatsApp
             </a>
         </div>
     </section>
 
-    <!-- 主要内容区：移除所有内部WhatsApp按钮，仅保留页面结构 -->
+    <!-- 主要内容区 -->
     <section class="section">
         <h2 class="section-title" id="overview">Visión General del Mercado Bursátil Español</h2>
 
-        <!-- 市场概览模块：无按钮 -->
+        <!-- 市场概览模块 -->
         <div class="market-overview">
             <p>El mercado bursátil español, encabezado por la Bolsa de Madrid (BME) — fundada en 1809 y actualmente parte del grupo Euronext — es uno de los más importantes y liquidos de Europa. Cuenta con índices clave como el IBEX 35, el IBEX Small Cap y el IBEX Mid Cap, que agrupan a empresas de diferentes tamaños y sectores, ofreciendo a los inversores una amplia gama de oportunidades en banca, energía, turismo, tecnología y consumo masivo.</p>
-            <p class="mt-2" style="margin-top: 1rem; color: var(--color-text-secondary); font-size: 0.95rem;">En 2025, la capitalización de mercado de la BME supera los 1.2 billones de euros, con más de 300 empresas cotizadas y una presencia internacional que atrae a inversores de todo el mundo, especialmente de América Latina y Europa occidental.</p>
+            <p class="mt-2" style="color: var(--color-text-secondary);">En 2025, la capitalización de mercado de la BME supera los 1.2 billones de euros, con más de 300 empresas cotizadas y una presencia internacional que atrae a inversores de todo el mundo, especialmente de América Latina y Europa occidental.</p>
             
             <div class="overview-grid">
                 <div class="overview-card">
@@ -602,7 +616,7 @@
             </div>
         </div>
 
-        <!-- IBEX 35 专属模块：无按钮 -->
+        <!-- IBEX 35 专属模块 -->
         <h2 class="section-title" id="ibex35">IBEX 35 - El Índice Icono de España</h2>
         <p class="section-subtitle">Conoce los detalles del índice más importante del mercado bursátil español</p>
         <div class="ibex35-section">
@@ -649,7 +663,7 @@
             </div>
         </div>
 
-        <!-- 热门股票模块：移除所有内部WhatsApp按钮 -->
+        <!-- 热门股票模块 -->
         <h2 class="section-title" id="stocks">Acciones Populares en España (IBEX 35)</h2>
         <div class="stocks-grid">
             <div class="stock-card">
@@ -725,7 +739,7 @@
             </div>
         </div>
 
-        <!-- 交易规则与投资贴士模块：无按钮 -->
+        <!-- 交易规则与投资贴士模块 -->
         <h2 class="section-title" id="trading">Reglas de Negociación & Consejos de Inversión</h2>
         <div class="trading-tips">
             <div class="tips-grid">
@@ -757,7 +771,7 @@
         </div>
     </section>
 
-    <!-- 投资优势模块：无按钮，导航栏对应文字已修改 -->
+    <!-- 投资优势模块 -->
     <section class="advantages" id="advantages">
         <h2 class="section-title">Contacta por WhatsApp</h2>
         <div class="advantages-grid">
@@ -810,7 +824,7 @@
         </div>
     </footer>
 
-    <!-- 基础交互脚本 + Facebook Contact 事件追踪 -->
+    <!-- 交互脚本 -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // 移动端菜单切换
@@ -839,11 +853,9 @@
             });
         });
 
-        // 定义 Facebook Contact 事件追踪函数
+        // Facebook Contact 事件追踪
         function trackContactEvent() {
-            // 触发 Contact 事件埋点
             fbq('track', 'Contact');
-            // 可选：控制台打印日志，用于测试事件是否触发成功
             console.log('Facebook Contact 事件已触发');
         }
     </script>
