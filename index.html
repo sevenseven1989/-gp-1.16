@@ -225,6 +225,64 @@
             box-shadow: 0 10px 24px rgba(18, 140, 126, 0.4);
         }
 
+        /* 悬浮WhatsApp按钮样式 */
+        .floating-whatsapp {
+            position: fixed;
+            right: clamp(1rem, 3vw, 2rem);
+            bottom: clamp(1rem, 3vw, 2rem);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: clamp(60px, 10vw, 70px);
+            height: clamp(60px, 10vw, 70px);
+            border-radius: 50%;
+            background-color: var(--whatsapp-bg);
+            color: var(--whatsapp-text);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            border: 2px solid var(--whatsapp-border);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .floating-whatsapp:hover {
+            background-color: var(--whatsapp-hover-bg);
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .floating-whatsapp i {
+            font-size: clamp(1.8rem, 5vw, 2.2rem);
+        }
+
+        /* 脉冲动画效果 */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* 移动端适配悬浮按钮 */
+        @media (max-width: 768px) {
+            .floating-whatsapp {
+                width: 55px;
+                height: 55px;
+                right: 15px;
+                bottom: 15px;
+            }
+            
+            .floating-whatsapp i {
+                font-size: 1.8rem;
+            }
+        }
+
         /* 通用内容容器 - 响应式内边距 */
         .section {
             padding: var(--padding-section-mobile);
@@ -559,6 +617,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- 悬浮WhatsApp按钮 -->
+    <a href="https://sdlink.cc/9zoRbp" target="_blank" class="floating-whatsapp" onclick="trackContactEvent()">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <!-- 导航栏 -->
     <header>
         <div class="nav-container">
